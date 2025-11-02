@@ -251,9 +251,8 @@ Genau das finden wir heraus und geben Ihnen Ihren Entscheidungsraum zurück.
                         Sicherheit mit System
                       </h3>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Moderne IT-Sicherheit blockiert nicht, sie schützt.
-Wir machen IT-Security zum Rückgrat Ihrer Organisation – statt zum Bremsklotz im Alltag.
-                      </p>
+                        Die Systeme werden komplexer – und damit auch die Angriffsflächen.
+Wir setzen auf moderne IT-Sicherheit, die schützt, bevor sie bremst: Zero Trust, Notfallmanagement, Verschlüsselung & Co.                      </p>
                     </div>
                   </div>
                 </div>
