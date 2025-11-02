@@ -10,7 +10,7 @@ import { Configurator } from "@/components/Configurator";
 import { useCaseStudies } from "@/hooks/useCaseStudies";
 import { supabase } from "@/integrations/supabase/client";
 
-const StrukturCompliance = () => {
+const DigitaleSouveraenitaetCompliance = () => {
   const navigate = useNavigate();
   const [showConfigurator, setShowConfigurator] = useState(false);
   const { caseStudies, isLoading } = useCaseStudies();
@@ -132,7 +132,7 @@ const StrukturCompliance = () => {
           <div className="absolute inset-0 z-0">
             <img
               src="https://pouyacqshyiqbczmypvd.supabase.co/storage/v1/object/public/images/1761564224420-qme2i.webp"
-              alt="Struktur & Compliance"
+              alt="Digitale Souveränität & Compliance"
               className="w-full h-full object-cover object-right"
               loading="eager"
               fetchpriority="high"
@@ -529,4 +529,4 @@ Wir finden die Lösung, die zu Ihnen passt – ob selbst gehostet, dediziert gem
   );
 };
 
-export default StrukturCompliance;
+export default DigitaleSouveraenitaetCompliance;

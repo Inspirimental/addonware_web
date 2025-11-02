@@ -25,7 +25,7 @@ import Profile from "./pages/Profile";
 import EmployeeDetail from "./pages/EmployeeDetail";
 import NotFound from "./pages/NotFound";
 import FuehrungskulturStrategie from "./pages/services/FuehrungskulturStrategie";
-import StrukturCompliance from "./pages/services/StrukturCompliance";
+import DigitaleSouveraenitaetCompliance from "./pages/services/DigitaleSouveraenitaetCompliance";
 import FachbereicheDigitalisierung from "./pages/services/FachbereicheDigitalisierung";
 import KomplexitaetMeistern from "./pages/services/KomplexitaetMeistern";
 
@@ -44,7 +44,8 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/leistungen/fuehrungskultur-strategie" element={<FuehrungskulturStrategie />} />
-          <Route path="/leistungen/struktur-compliance" element={<StrukturCompliance />} />
+          <Route path="/leistungen/digitale-souveraenitaet-compliance" element={<DigitaleSouveraenitaetCompliance />} />
+          <Route path="/leistungen/struktur-compliance" element={<DigitaleSouveraenitaetCompliance />} />
           <Route path="/leistungen/fachbereiche-digitalisierung" element={<FachbereicheDigitalisierung />} />
           <Route path="/leistungen/komplexitaet-meistern" element={<KomplexitaetMeistern />} />
           <Route path="/about" element={<About />} />
