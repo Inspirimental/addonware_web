@@ -143,17 +143,16 @@ const StrukturCompliance = () => {
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-[1.2] tracking-tight">
-                Digitale Souveränität &
-Compliance
+                Struktur & Compliance
               </h1>
 
               <p className="text-xl md:text-2xl text-primary mb-8 font-light">
-                Skalierung braucht einen Lageplan.
+                Skalierung braucht Struktur.
               </p>
 
               <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
                 Wenn Prozesse, Datenflüsse oder Sicherheitsfragen nicht geklärt sind, entsteht Stillstand.
-                Wer zuverlässig wachsen will, muss wissen, worauf er sich verlassen kann – bei Prozessen, Daten und Systemen. Wir helfen dabei, aus Ihren Daten digitale Produkte zu machen – Datenschutz und Compliance erledigen wir dabei gleich mit.
+                Wir helfen, Strukturen aufzubauen, die IT, Organisation und Verantwortung miteinander verbinden – sicher, wirksam und zukunftsfähig.
               </p>
             </div>
           </div>
@@ -175,7 +174,8 @@ Compliance
                       „Datenschutz, IT-Security, Datenstrategie – das klingt für viele wie ein nerviges Pflichtprogramm."
                     </p>
                     <p>
-                      Doch wer seine Daten wirklich versteht, kann Prozesse verbessern, Kosten senken und machnmal sogar neue Geschäftsfelder erschließen.
+                      Doch wer seine Daten wirklich versteht, kann Prozesse verbessern, Kosten senken und neue Geschäftsideen entwickeln.<br />
+Wir helfen Organisationen, ihre Strukturen so aufzustellen, dass Sicherheit kein Bremsklotz ist – sondern ein Beschleuniger.
                     </p>
                   </blockquote>
 
@@ -184,28 +184,10 @@ Compliance
                       Pierre Gluth
                     </p>
                     <p className="text-sm text-slate-600 dark:text-slate-400">
-                      Berater für Business Continuity Management (BCM) bei Addonware
+                      Berater bei Addonware
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-20 bg-slate-100 dark:bg-slate-950">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <blockquote className="text-2xl md:text-3xl font-light text-slate-800 dark:text-slate-200 leading-relaxed mb-8">
-                „Entscheidend ist nicht, ob wir digitale Tools nutzen – sondern wie bewusst wir das tun."
-              </blockquote>
-              <div className="pt-4">
-                <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
-                  Stina Bakke-Jensen
-                </p>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  Chefredakteurin, iTromsø
-                </p>
               </div>
             </div>
           </div>
@@ -219,8 +201,8 @@ Compliance
                   Warum das Thema Struktur & Compliance entscheidend ist
                 </h2>
                 <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                  Wer zuverlässig wachsen will, muss wissen, worauf er sich verlassen kann – bei Prozessen, Daten und Systemen.
-                  Wir helfen dabei, aus Ihren Daten Produkte zu machen – Datenschutz und Compliance erledigen wir dabei gleich mit.
+                  Compliance ist kein Papierkrieg – es ist ein Fundament für nachhaltiges Wachstum.
+                  Wir helfen, die Balance zwischen Regulierung und Beweglichkeit zu finden.
                 </p>
               </div>
 
@@ -235,8 +217,7 @@ Compliance
                         Datenschutz, der funktioniert
                       </h3>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Die Datenschutzanforderungen rauben Ihnen den letzten Nerv?
-Wir bringen DSGVO, revDSG & Co. vom Papier in die Praxis – nicht als Checkliste, sondern als Teil der Organisation.
+                        Wir bringen DSGVO, revDSG & Co. vom Papier in die Praxis – nicht als Checkliste, sondern als Teil der Organisation.
                       </p>
                     </div>
                   </div>
@@ -249,11 +230,10 @@ Wir bringen DSGVO, revDSG & Co. vom Papier in die Praxis – nicht als Checklist
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
-                        Digitale Souveränität statt Abhängigkeit
+                        Verantwortung, die greift
                       </h3>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Wissen Sie, wo Ihre Daten liegen – und wer darauf Zugriff hat?
-Genau das finden wir heraus und geben Ihnen Ihren Entscheidungsraum zurück.
+                        Gute Compliance braucht klare Prozesse. Wir helfen, Zuständigkeiten, Freigaben und Risiken sauber zu regeln.
                       </p>
                     </div>
                   </div>
@@ -269,8 +249,8 @@ Genau das finden wir heraus und geben Ihnen Ihren Entscheidungsraum zurück.
                         Sicherheit mit System
                       </h3>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Die Systeme werden komplexer – und damit auch die Angriffsflächen.
-Wir setzen auf moderne IT-Sicherheit, die schützt, bevor sie bremst: Zero Trust, Notfallmanagement, Verschlüsselung & Co.                      </p>
+                        Von IT-Grundschutz bis Notfallmanagement – wir stärken Ihre Resilienz, bevor's kritisch wird.
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -282,11 +262,10 @@ Wir setzen auf moderne IT-Sicherheit, die schützt, bevor sie bremst: Zero Trust
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
-                        Angst vor der Cloud?
+                        Struktur schafft Handlungsspielraum
                       </h3>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Die Frage ist nicht mehr ob Cloud – sondern wie.
-Wir schaffen mit Ihnen Lösungen, die passen: kontrolliert, sicher und produktiv.
+                        Wer Abläufe kennt, gewinnt Zeit – für strategische Arbeit statt Firefighting.
                       </p>
                     </div>
                   </div>
