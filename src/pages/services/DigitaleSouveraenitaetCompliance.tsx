@@ -438,11 +438,11 @@ Wir finden die Lösung, die zu Ihnen passt – ob selbst gehostet, dediziert gem
               <div className="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
                 <div className="text-center mb-8">
                   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-                    Wie steht es um Ihre Strukturen?
+                    Wie steht es um Ihre digitale Souveränität?
                   </h2>
                   <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                    Ein Reifegrad-Check für den Bereich Struktur & Compliance ist in Vorbereitung.
-                    Bis dahin stehen wir Ihnen gerne für ein persönliches Gespräch zur Verfügung.
+                    Mit unserem Reifegrad-Check können Sie in 5 Fragen schnell prüfen,
+                    wo Ihre Organisation steht. Wir bieten Ihnen zwei bewährte Einstiegswege:
                   </p>
                 </div>
 
@@ -455,17 +455,18 @@ Wir finden die Lösung, die zu Ihnen passt – ob selbst gehostet, dediziert gem
                       <div>
                         <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Reifegrad-Check</h3>
                         <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                          Bald verfügbar: Prüfen Sie den Status Ihrer Compliance- und Sicherheitsstrukturen.
+                          Verschaffen Sie sich Klarheit über den Status Ihrer digitalen Souveränität und Compliance.
+                          Kostenlos und in wenigen Minuten.
                         </p>
                       </div>
                     </div>
                     <Button
                       size="lg"
-                      variant="outline"
-                      disabled
-                      className="w-full"
+                      onClick={() => navigate("/umfrage/digitale-souveraenitaet")}
+                      className="w-full bg-primary hover:bg-primary-hover text-primary-foreground"
                     >
-                      In Vorbereitung
+                      Jetzt Reifegrad testen
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
 
@@ -477,14 +478,16 @@ Wir finden die Lösung, die zu Ihnen passt – ob selbst gehostet, dediziert gem
                       <div>
                         <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Beratungsgespräch</h3>
                         <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                          Sprechen Sie direkt mit unseren Experten über Ihre spezifischen Anforderungen.
+                          Direkter Austausch auf Augenhöhe. Gemeinsam entwickeln wir Lösungen für Ihre
+                          spezifischen Herausforderungen.
                         </p>
                       </div>
                     </div>
                     <Button
                       size="lg"
+                      variant="outline"
                       onClick={() => navigate("/contact")}
-                      className="w-full bg-primary hover:bg-primary-hover text-primary-foreground"
+                      className="w-full border-2"
                     >
                       Gespräch vereinbaren
                       <ArrowRight className="ml-2 h-4 w-4" />

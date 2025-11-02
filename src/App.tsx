@@ -16,6 +16,7 @@ import Pricing from "./pages/Pricing";
 import Partners from "./pages/Partners";
 import QuestionnaireTransformation from "./pages/QuestionnaireTransformation";
 import QuestionnaireFuehrung from "./pages/QuestionnaireFuehrung";
+import QuestionnaireDigitaleSouveraenitaet from "./pages/QuestionnaireDigitaleSouveraenitaet";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
 import AGB from "./pages/AGB";
@@ -55,7 +56,8 @@ const App = () => (
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/partners" element={<Partners />} />
           <Route path="/questionnaire" element={<QuestionnaireTransformation />} />
-          <Route path="/umfrage/:slug" element={<QuestionnaireFuehrung />} />
+          <Route path="/umfrage/fuehrung" element={<QuestionnaireFuehrung />} />
+          <Route path="/umfrage/digitale-souveraenitaet" element={<QuestionnaireDigitaleSouveraenitaet />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="/agb" element={<AGB />} />
