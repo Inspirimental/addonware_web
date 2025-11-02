@@ -143,16 +143,16 @@ const StrukturCompliance = () => {
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-[1.2] tracking-tight">
-                Struktur & Compliance
+                Digitale Souveränität &<br />
+                Compliance
               </h1>
 
               <p className="text-xl md:text-2xl text-primary mb-8 font-light">
-                Skalierung braucht Struktur.
+                Skalierung braucht einen Lageplan.
               </p>
 
               <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
-                Wenn Prozesse, Datenflüsse oder Sicherheitsfragen nicht geklärt sind, entsteht Stillstand.
-                Wir helfen, Strukturen aufzubauen, die IT, Organisation und Verantwortung miteinander verbinden – sicher, wirksam und zukunftsfähig.
+                Wer zuverlässig wachsen will, muss wissen, worauf er sich verlassen kann – bei Prozessen, Daten und Systemen. Wir helfen dabei, aus Ihren Daten digitale Produkte zu machen – Datenschutz und Compliance erledigen wir dabei gleich mit.
               </p>
             </div>
           </div>
@@ -164,7 +164,7 @@ const StrukturCompliance = () => {
               <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-12 items-center">
                 <div className="flex justify-center md:justify-start">
                   <div className="w-48 h-48 md:w-full md:h-auto aspect-square rounded-full bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800 flex items-center justify-center shadow-md">
-                    <span className="text-slate-500 dark:text-slate-400 text-sm">Platzhalter Pierre</span>
+                    <span className="text-slate-500 dark:text-slate-400 text-sm">Platzhalter PG</span>
                   </div>
                 </div>
 
@@ -174,8 +174,7 @@ const StrukturCompliance = () => {
                       „Datenschutz, IT-Security, Datenstrategie – das klingt für viele wie ein nerviges Pflichtprogramm."
                     </p>
                     <p>
-                      Doch wer seine Daten wirklich versteht, kann Prozesse verbessern, Kosten senken und neue Geschäftsideen entwickeln.<br />
-Wir helfen Organisationen, ihre Strukturen so aufzustellen, dass Sicherheit kein Bremsklotz ist – sondern ein Beschleuniger.
+                      Doch wer seine Daten wirklich versteht, kann Prozesse verbessern, Kosten senken und machnmal sogar neue Geschäftsfelder erschließen.
                     </p>
                   </blockquote>
 
@@ -184,7 +183,7 @@ Wir helfen Organisationen, ihre Strukturen so aufzustellen, dass Sicherheit kein
                       Pierre Gluth
                     </p>
                     <p className="text-sm text-slate-600 dark:text-slate-400">
-                      Berater bei Addonware
+                      Berater für Business Continuity Management (BCM) bei Addonware
                     </p>
                   </div>
                 </div>
