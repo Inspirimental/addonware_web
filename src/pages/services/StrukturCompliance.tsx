@@ -217,7 +217,8 @@ Compliance
                         Datenschutz, der funktioniert
                       </h3>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Wir bringen DSGVO, revDSG & Co. vom Papier in die Praxis – nicht als Checkliste, sondern als Teil der Organisation.
+                        Die Datenschutzanforderungen rauben Ihnen den letzten Nerv?
+Wir bringen DSGVO, revDSG & Co. vom Papier in die Praxis – nicht als Checkliste, sondern als Teil der Organisation.
                       </p>
                     </div>
                   </div>
@@ -230,10 +231,11 @@ Compliance
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
-                        Verantwortung, die greift
+                        Digitale Souveränität statt Abhängigkeit
                       </h3>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Gute Compliance braucht klare Prozesse. Wir helfen, Zuständigkeiten, Freigaben und Risiken sauber zu regeln.
+                        Wissen Sie, wo Ihre Daten liegen – und wer darauf Zugriff hat?
+Genau das finden wir heraus und geben Ihnen Ihren Entscheidungsraum zurück.
                       </p>
                     </div>
                   </div>
@@ -249,7 +251,8 @@ Compliance
                         Sicherheit mit System
                       </h3>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Von IT-Grundschutz bis Notfallmanagement – wir stärken Ihre Resilienz, bevor's kritisch wird.
+                        Moderne IT-Sicherheit blockiert nicht, sie schützt.
+Wir machen IT-Security zum Rückgrat Ihrer Organisation – statt zum Bremsklotz im Alltag.
                       </p>
                     </div>
                   </div>
@@ -262,10 +265,11 @@ Compliance
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
-                        Struktur schafft Handlungsspielraum
+                        Angst vor der Cloud?
                       </h3>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Wer Abläufe kennt, gewinnt Zeit – für strategische Arbeit statt Firefighting.
+                        Die Frage ist nicht mehr ob Cloud – sondern wie.
+Wir schaffen mit Ihnen Lösungen, die passen: kontrolliert, sicher und produktiv.
                       </p>
                     </div>
                   </div>
