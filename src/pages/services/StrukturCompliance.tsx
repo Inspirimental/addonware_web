@@ -143,16 +143,17 @@ const StrukturCompliance = () => {
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-[1.2] tracking-tight">
-                Struktur & Compliance
+                Digitale Souveränität &
+Compliance
               </h1>
 
               <p className="text-xl md:text-2xl text-primary mb-8 font-light">
-                Skalierung braucht Struktur.
+                Skalierung braucht einen Lageplan.
               </p>
 
               <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
                 Wenn Prozesse, Datenflüsse oder Sicherheitsfragen nicht geklärt sind, entsteht Stillstand.
-                Wir helfen, Strukturen aufzubauen, die IT, Organisation und Verantwortung miteinander verbinden – sicher, wirksam und zukunftsfähig.
+                Wer zuverlässig wachsen will, muss wissen, worauf er sich verlassen kann – bei Prozessen, Daten und Systemen. Wir helfen dabei, aus Ihren Daten digitale Produkte zu machen – Datenschutz und Compliance erledigen wir dabei gleich mit.
               </p>
             </div>
           </div>
@@ -174,8 +175,7 @@ const StrukturCompliance = () => {
                       „Datenschutz, IT-Security, Datenstrategie – das klingt für viele wie ein nerviges Pflichtprogramm."
                     </p>
                     <p>
-                      Doch wer seine Daten wirklich versteht, kann Prozesse verbessern, Kosten senken und neue Geschäftsideen entwickeln.<br />
-Wir helfen Organisationen, ihre Strukturen so aufzustellen, dass Sicherheit kein Bremsklotz ist – sondern ein Beschleuniger.
+                      Doch wer seine Daten wirklich versteht, kann Prozesse verbessern, Kosten senken und machnmal sogar neue Geschäftsfelder erschließen.
                     </p>
                   </blockquote>
 
@@ -184,7 +184,7 @@ Wir helfen Organisationen, ihre Strukturen so aufzustellen, dass Sicherheit kein
                       Pierre Gluth
                     </p>
                     <p className="text-sm text-slate-600 dark:text-slate-400">
-                      Berater bei Addonware
+                      Berater für Business Continuity Management (BCM) bei Addonware
                     </p>
                   </div>
                 </div>
@@ -201,8 +201,8 @@ Wir helfen Organisationen, ihre Strukturen so aufzustellen, dass Sicherheit kein
                   Warum das Thema Struktur & Compliance entscheidend ist
                 </h2>
                 <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                  Compliance ist kein Papierkrieg – es ist ein Fundament für nachhaltiges Wachstum.
-                  Wir helfen, die Balance zwischen Regulierung und Beweglichkeit zu finden.
+                  Wer zuverlässig wachsen will, muss wissen, worauf er sich verlassen kann – bei Prozessen, Daten und Systemen.
+                  Wir helfen dabei, aus Ihren Daten Produkte zu machen – Datenschutz und Compliance erledigen wir dabei gleich mit.
                 </p>
               </div>
 
