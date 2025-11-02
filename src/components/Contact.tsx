@@ -124,6 +124,8 @@ export const Contact = () => {
                         onChange={(e) => handleChange("name", e.target.value)}
                         required
                         maxLength={100}
+                        className="text-base md:text-sm"
+                        autoComplete="name"
                       />
                     </div>
                     <div className="space-y-2">
@@ -135,6 +137,9 @@ export const Contact = () => {
                         onChange={(e) => handleChange("email", e.target.value)}
                         required
                         maxLength={254}
+                        className="text-base md:text-sm"
+                        autoComplete="email"
+                        inputMode="email"
                       />
                     </div>
                   </div>
@@ -146,6 +151,8 @@ export const Contact = () => {
                       value={formData.organization}
                       onChange={(e) => handleChange("organization", e.target.value)}
                       maxLength={200}
+                      className="text-base md:text-sm"
+                      autoComplete="organization"
                     />
                   </div>
 
@@ -159,6 +166,7 @@ export const Contact = () => {
                       placeholder="Beschreiben Sie Ihr Anliegen..."
                       required
                       maxLength={2000}
+                      className="text-base md:text-sm resize-none"
                     />
                   </div>
 

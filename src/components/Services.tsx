@@ -81,9 +81,33 @@ export const Services = () => {
       container.addEventListener('scroll', handleScroll);
       window.addEventListener('resize', handleScroll);
 
+      let touchStartX = 0;
+      let touchStartY = 0;
+      const handleTouchStart = (e: TouchEvent) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      };
+
+      const handleTouchMove = (e: TouchEvent) => {
+        if (!container) return;
+        const touchEndX = e.touches[0].clientX;
+        const touchEndY = e.touches[0].clientY;
+        const deltaX = touchStartX - touchEndX;
+        const deltaY = touchStartY - touchEndY;
+
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+          e.preventDefault();
+        }
+      };
+
+      container.addEventListener('touchstart', handleTouchStart, { passive: true });
+      container.addEventListener('touchmove', handleTouchMove, { passive: false });
+
       return () => {
         container.removeEventListener('scroll', handleScroll);
         window.removeEventListener('resize', handleScroll);
+        container.removeEventListener('touchstart', handleTouchStart);
+        container.removeEventListener('touchmove', handleTouchMove);
       };
     }
   }, [cards]);
