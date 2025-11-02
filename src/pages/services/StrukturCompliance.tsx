@@ -193,6 +193,24 @@ Compliance
           </div>
         </section>
 
+        <section className="py-20 bg-slate-100 dark:bg-slate-950">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <blockquote className="text-2xl md:text-3xl font-light text-slate-800 dark:text-slate-200 leading-relaxed mb-8">
+                „Entscheidend ist nicht, ob wir digitale Tools nutzen – sondern wie bewusst wir das tun."
+              </blockquote>
+              <div className="pt-4">
+                <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                  Stina Bakke-Jensen
+                </p>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Chefredakteurin, iTromsø
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="py-20 bg-slate-50 dark:bg-slate-800">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
