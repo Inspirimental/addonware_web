@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Configurator } from "@/components/Configurator";
 import { PersonalizedContactForm } from "@/components/PersonalizedContactForm";
+import { SEO } from "@/components/SEO";
 import { resolveTeamImage } from "@/lib/teamImageResolver";
 import { useNavigate } from "react-router-dom";
 import { usePublicEmployees } from "@/hooks/usePublicEmployees";
@@ -23,6 +24,13 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Über uns - Unser Team"
+        description="Lernen Sie das Team von Addonware kennen. Experten für digitale Transformation und IT-Beratung mit langjähriger Erfahrung."
+        keywords="Team, Experten, IT-Berater, Digitalisierungsexperten, Addonware Team"
+        url="/about"
+        type="website"
+      />
       <Navigation onConfiguratorOpen={() => setIsConfiguratorOpen(true)} />
       
       <main className="pt-16">

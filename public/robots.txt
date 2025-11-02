@@ -28,4 +28,4 @@ Allow: /
 User-agent: Claude-Web
 Allow: /
 
-Sitemap: https://www.addonware.de/sitemap.xml
+Sitemap: https://addonware.de/sitemap.xml

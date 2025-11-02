@@ -5,6 +5,7 @@ import { Services } from "@/components/Services";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { Configurator } from "@/components/Configurator";
+import { SEO } from "@/components/SEO";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
@@ -16,8 +17,35 @@ const Index = () => {
     setIsConfiguratorOpen(true);
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Addonware",
+    "url": "https://addonware.de",
+    "logo": "https://addonware.de/addonware%20Logo.png",
+    "description": "Experten für digitale Transformation, IT-Strategie und Compliance",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "DE"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "availableLanguage": "German"
+    },
+    "sameAs": []
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Digitale Transformation & IT-Beratung"
+        description="Experten für digitale Transformation, IT-Strategie und Compliance. Wir unterstützen Unternehmen bei der Digitalisierung und Optimierung ihrer IT-Infrastruktur."
+        keywords="Digitale Transformation, IT-Beratung, IT-Strategie, Compliance, Digitalisierung, IT-Infrastruktur"
+        url="/"
+        type="website"
+        structuredData={structuredData}
+      />
       <Navigation onConfiguratorOpen={handleConfiguratorOpen} />
 
       <main className="pt-16">
