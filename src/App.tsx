@@ -32,7 +32,17 @@ const DigitaleSouveraenitaetCompliance = lazy(() => import("./pages/services/Dig
 const FachbereicheDigitalisierung = lazy(() => import("./pages/services/FachbereicheDigitalisierung"));
 const KomplexitaetMeistern = lazy(() => import("./pages/services/KomplexitaetMeistern"));
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000,
+      gcTime: 10 * 60 * 1000,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      retry: 1,
+    },
+  },
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>

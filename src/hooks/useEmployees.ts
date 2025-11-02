@@ -1,38 +1,32 @@
-import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { type Tables } from '@/integrations/supabase/types';
 
 type Employee = Tables<'employees'>;
 
+const fetchEmployees = async () => {
+  const { data, error } = await supabase
+    .from('employees')
+    .select('*')
+    .eq('is_active', true)
+    .order('sort_order', { ascending: true })
+    .order('created_at', { ascending: true });
+
+  if (error) throw error;
+  return data || [];
+};
+
 export const useEmployees = () => {
-  const [employees, setEmployees] = useState<Employee[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data: employees = [], isLoading, error, refetch } = useQuery({
+    queryKey: ['employees'],
+    queryFn: fetchEmployees,
+    staleTime: 5 * 60 * 1000,
+  });
 
-  useEffect(() => {
-    fetchEmployees();
-  }, []);
-
-  const fetchEmployees = async () => {
-    try {
-      setIsLoading(true);
-      const { data, error } = await supabase
-        .from('employees')
-        .select('*')
-        .eq('is_active', true)
-        .order('sort_order', { ascending: true })
-        .order('created_at', { ascending: true });
-
-      if (error) throw error;
-      setEmployees(data || []);
-      setError(null);
-    } catch (err) {
-      console.error('Error fetching employees:', err);
-      setError('Fehler beim Laden der Mitarbeiter');
-    } finally {
-      setIsLoading(false);
-    }
+  return {
+    employees,
+    isLoading,
+    error: error ? 'Fehler beim Laden der Mitarbeiter' : null,
+    refetch
   };
-
-  return { employees, isLoading, error, refetch: fetchEmployees };
 };
