@@ -52,7 +52,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+        <Suspense fallback={<div className="flex items-center justify-center min-h-screen" role="status" aria-live="polite"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div><span className="sr-only">Seite wird geladen...</span></div>}>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />

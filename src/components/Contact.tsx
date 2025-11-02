@@ -192,8 +192,17 @@ export const Contact = () => {
                   </div>
 
                   <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
-                    <ArrowRight className="w-5 h-5 ml-2" />
+                    {isSubmitting ? (
+                      <>
+                        <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2" />
+                        Wird gesendet...
+                      </>
+                    ) : (
+                      <>
+                        Nachricht senden
+                        <ArrowRight className="w-5 h-5 ml-2" />
+                      </>
+                    )}
                   </Button>
                 </form>
               </CardContent>

@@ -8,6 +8,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Configurator } from "@/components/Configurator";
 import { PersonalizedContactForm } from "@/components/PersonalizedContactForm";
 import { SEO } from "@/components/SEO";
+import { TeamMemberSkeleton } from "@/components/ui/skeleton-loaders";
 import { resolveTeamImage } from "@/lib/teamImageResolver";
 import { useNavigate } from "react-router-dom";
 import { usePublicEmployees } from "@/hooks/usePublicEmployees";
@@ -54,7 +55,11 @@ const About = () => {
             Ob Sparring, Projektanfrage oder vertiefender Austausch – sprechen Sie uns an.
           </p>
           {isLoading ? (
-            <div className="text-center">Laden...</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <TeamMemberSkeleton key={i} />
+              ))}
+            </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
               {employees.map((member) => (
@@ -78,16 +83,18 @@ const About = () => {
                         onClick={() => handleContactMember({ id: member.id, name: member.name, email: member.email })}
                         className="w-8 h-8 rounded-full bg-muted/30 flex items-center justify-center hover:bg-primary/20 transition-colors"
                         title={`Nachricht an ${member.name} senden`}
+                        aria-label={`Nachricht an ${member.name} senden`}
                       >
                         <Mail className="w-4 h-4 text-muted-foreground hover:text-primary" />
                       </button>
                       
                       {/* Phone Icon - always show but disabled if no phone */}
                       {member.phone && member.phone.trim() ? (
-                        <a 
+                        <a
                           href={`tel:${member.phone}`}
                           className="w-8 h-8 rounded-full bg-muted/30 flex items-center justify-center hover:bg-primary/20 transition-colors"
                           title={`${member.name} anrufen`}
+                          aria-label={`${member.name} anrufen: ${member.phone}`}
                         >
                           <Phone className="w-4 h-4 text-muted-foreground hover:text-primary" />
                         </a>
