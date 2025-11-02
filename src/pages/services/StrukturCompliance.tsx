@@ -275,7 +275,35 @@ Wir helfen Organisationen, ihre Strukturen so aufzustellen, dass Sicherheit kein
           </div>
         </section>
 
-        <section className="py-20 bg-white dark:bg-slate-900">
+        <section className="py-16 bg-white dark:bg-slate-900">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="flex-shrink-0">
+                  <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 dark:from-primary/30 dark:to-primary/20 flex items-center justify-center border-2 border-primary/20">
+                    <Quote className="w-12 h-12 md:w-16 md:h-16 text-primary" strokeWidth={1.5} />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <blockquote className="text-xl md:text-2xl font-light text-slate-700 dark:text-slate-200 mb-4 italic leading-relaxed">
+                    „Entscheidend ist nicht, ob wir digitale Tools nutzen – sondern wie bewusst wir das tun."
+                  </blockquote>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mb-6">
+                    — Stina Bakke-Jensen, Chefredakteurin, iTromsø
+                  </p>
+                  <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+                    <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                      Digitale Souveränität beginnt mit bewussten Entscheidungen über Daten, Tools und Strukturen.
+                      Wir helfen, diese Grundlagen sauber aufzubauen.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-slate-50 dark:bg-slate-800">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-12">
