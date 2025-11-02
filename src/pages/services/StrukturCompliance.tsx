@@ -131,7 +131,7 @@ const StrukturCompliance = () => {
         <section className="relative min-h-[80vh] flex items-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img
-              src="https://pouyacqshyiqbczmypvd.supabase.co/storage/v1/object/public/images/1761564221762-duwsgl.webp"
+              src="https://pouyacqshyiqbczmypvd.supabase.co/storage/v1/object/public/images/1762095079849-hmoe9.webp"
               alt="Struktur & Compliance"
               className="w-full h-full object-cover object-right"
               loading="eager"

@@ -11,7 +11,7 @@ export const Hero = ({ onConfiguratorOpen }: HeroProps) => {
     <section className="relative min-h-[80vh] flex items-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src="/HeaderHero2.webp"
+          src="https://pouyacqshyiqbczmypvd.supabase.co/storage/v1/object/public/images/1761503789753-HeaderHero2.webp"
           alt="Digitale Transformation und IT-Beratung - Professionelles Team bei der strategischen Planung"
           className="w-full h-full object-cover object-right"
           loading="eager"
