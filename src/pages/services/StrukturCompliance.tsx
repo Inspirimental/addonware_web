@@ -247,7 +247,8 @@ const StrukturCompliance = () => {
                         Sicherheit mit System
                       </h3>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Von IT-Grundschutz bis Notfallmanagement – wir stärken Ihre Resilienz, bevor's kritisch wird.
+                        Die Systeme werden komplexer – und damit auch die Angriffsflächen.
+Wir setzen auf moderne IT-Sicherheit, die schützt, bevor sie bremst: Zero Trust, Notfallmanagement, Verschlüsselung & Co.
                       </p>
                     </div>
                   </div>
