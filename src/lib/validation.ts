@@ -63,29 +63,82 @@ export const employeeSchema = z.object({
     .or(z.literal(''))
 });
 
-// Rate limiting helper
-export const rateLimitMap = new Map<string, { count: number; timestamp: number }>();
+interface RateLimitRecord {
+  count: number;
+  timestamp: number;
+  firstAttempt: number;
+}
 
-export const checkRateLimit = (identifier: string, maxAttempts = 5, windowMs = 15 * 60 * 1000): boolean => {
+export const rateLimitMap = new Map<string, RateLimitRecord>();
+
+const RATE_LIMIT_CLEANUP_INTERVAL = 60 * 60 * 1000;
+let lastCleanup = Date.now();
+
+const cleanupExpiredRecords = (windowMs: number): void => {
   const now = Date.now();
+  if (now - lastCleanup < RATE_LIMIT_CLEANUP_INTERVAL) return;
+
+  for (const [key, record] of rateLimitMap.entries()) {
+    if (now - record.timestamp > windowMs) {
+      rateLimitMap.delete(key);
+    }
+  }
+  lastCleanup = now;
+};
+
+export const checkRateLimit = (
+  identifier: string,
+  maxAttempts = 5,
+  windowMs = 15 * 60 * 1000
+): boolean => {
+  const now = Date.now();
+  cleanupExpiredRecords(windowMs);
+
   const record = rateLimitMap.get(identifier);
-  
+
   if (!record) {
-    rateLimitMap.set(identifier, { count: 1, timestamp: now });
+    rateLimitMap.set(identifier, {
+      count: 1,
+      timestamp: now,
+      firstAttempt: now
+    });
     return true;
   }
-  
-  if (now - record.timestamp > windowMs) {
-    rateLimitMap.set(identifier, { count: 1, timestamp: now });
+
+  if (now - record.firstAttempt > windowMs) {
+    rateLimitMap.set(identifier, {
+      count: 1,
+      timestamp: now,
+      firstAttempt: now
+    });
     return true;
   }
-  
+
   if (record.count >= maxAttempts) {
+    record.timestamp = now;
     return false;
   }
-  
+
   record.count++;
+  record.timestamp = now;
   return true;
+};
+
+export const getRateLimitInfo = (identifier: string): {
+  remaining: number;
+  resetAt: number;
+  isBlocked: boolean;
+} | null => {
+  const record = rateLimitMap.get(identifier);
+  if (!record) return null;
+
+  const maxAttempts = 5;
+  const windowMs = 15 * 60 * 1000;
+  const remaining = Math.max(0, maxAttempts - record.count);
+  const resetAt = record.firstAttempt + windowMs;
+  const isBlocked = record.count >= maxAttempts;
+
+  return { remaining, resetAt, isBlocked };
 };
 
 // Input sanitization

@@ -1,11 +1,11 @@
-import { Factory, Car, Database, Lightbulb, Target, Shield, Building, Users, Cog } from "lucide-react";
+import { Factory, Car, Database, Lightbulb, Target, Shield, Building, Users, Cog, LucideIcon } from "lucide-react";
 
 export interface CaseStudy {
   id: string;
   title: string;
   industry: string;
   category: string;
-  icon: any;
+  icon: LucideIcon;
   challenge: string;
   solution: string;
   result: string;

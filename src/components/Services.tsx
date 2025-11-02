@@ -2,14 +2,14 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import * as Icons from "lucide-react";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 
 interface Card {
   id?: string;
   category: string;
-  icon?: any;
+  icon?: LucideIcon;
   title: string;
   subtitle: string;
   teaser: string;
@@ -39,7 +39,7 @@ export const Services = () => {
 
       if (homepageCards && homepageCards.length > 0) {
         const mappedCards: Card[] = homepageCards.map((card) => {
-          const IconComponent = (Icons as any)[card.icon] || Icons.FileText;
+          const IconComponent = (Icons as Record<string, LucideIcon>)[card.icon] || Icons.FileText;
 
           return {
             id: card.id,

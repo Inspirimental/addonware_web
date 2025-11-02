@@ -48,6 +48,7 @@ import {
   EyeOff,
 } from "lucide-react";
 import * as Icons from "lucide-react";
+import { LucideIcon } from "lucide-react";
 import { ImagePicker } from "./ImagePicker";
 import { navItems, footerLinks } from "@/config/navigation";
 
@@ -117,24 +118,29 @@ const linkTypes = [
   { value: "external", label: "Externe URL" },
 ];
 
-// Kombiniere alle Navigationselemente für die Auswahl
-const getAllNavigationItems = () => {
-  const items = [
+interface NavigationItem {
+  label: string;
+  path: string;
+  children?: Array<{ label: string; path: string }>;
+}
+
+const getAllNavigationItems = (): NavigationItem[] => {
+  const items: NavigationItem[] = [
     { label: "Startseite", path: "/" },
   ];
 
-  // Füge alle Navigations-Einträge hinzu
   navItems.forEach(item => {
     if (item.submenu) {
-      // Füge Hauptmenüpunkt als Gruppierung hinzu
-      items.push({ label: item.label, path: "", children: item.submenu.map(sub => ({ label: sub.label, path: sub.href })) });
+      items.push({
+        label: item.label,
+        path: "",
+        children: item.submenu.map(sub => ({ label: sub.label, path: sub.href }))
+      });
     } else {
-      // Füge normalen Menüpunkt hinzu
       items.push({ label: item.label, path: item.href });
     }
   });
 
-  // Füge Footer-Links hinzu
   footerLinks.forEach(link => {
     items.push({ label: link.label, path: link.href });
   });
@@ -546,7 +552,7 @@ export const HomepageManager = () => {
               >
                 <div className="flex items-center gap-2">
                   {formData.icon && (() => {
-                    const IconComponent = (Icons as any)[formData.icon];
+                    const IconComponent = (Icons as Record<string, LucideIcon>)[formData.icon];
                     return IconComponent ? <IconComponent className="w-4 h-4" /> : null;
                   })()}
                   <span>{formData.icon || "Icon auswählen"}</span>
@@ -575,7 +581,7 @@ export const HomepageManager = () => {
                         name.toLowerCase().includes(iconSearchTerm.toLowerCase())
                       )
                       .map((iconName) => {
-                        const IconComponent = (Icons as any)[iconName];
+                        const IconComponent = (Icons as Record<string, LucideIcon>)[iconName];
                         if (!IconComponent) return null;
 
                         return (
@@ -691,15 +697,14 @@ export const HomepageManager = () => {
                     <SelectValue placeholder="Seite auswählen..." />
                   </SelectTrigger>
                   <SelectContent>
-                    {getAllNavigationItems().map((item: any) => (
+                    {getAllNavigationItems().map((item) => (
                       <div key={item.label}>
                         {item.children ? (
-                          // Hauptmenüpunkt mit Kindern - ausgegraut, nicht auswählbar
                           <>
                             <div className="px-2 py-1.5 text-sm font-semibold text-muted-foreground">
                               {item.label}
                             </div>
-                            {item.children.map((child: any) => (
+                            {item.children.map((child) => (
                               <SelectItem key={child.path} value={child.path} className="pl-6">
                                 → {child.label}
                               </SelectItem>
