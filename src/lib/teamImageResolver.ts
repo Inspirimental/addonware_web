@@ -1,33 +1,26 @@
-import eirikOtto from "@/assets/team/eirik-otto.jpg";
-import falkoSmirat from "@/assets/team/falko-smirat.jpg";
-import joergFluegge from "@/assets/team/joerg-fluegge.jpg";
-import oliverMoeller from "@/assets/team/oliver-moeller.jpg";
-import paulRosenbusch from "@/assets/team/paul-rosenbusch.jpg";
-import reimundMeffert from "@/assets/team/reimund-meffert.jpg";
-import uweStraubel from "@/assets/team/uwe-straubel.jpg";
+const SUPABASE_STORAGE_URL = 'https://pouyacqshyiqbczmypvd.supabase.co/storage/v1/object/public/images';
 
-// Map known team image filenames to their bundled asset URLs
+// Map known team image filenames to their Supabase Storage URLs
 export const teamImageMap: Record<string, string> = {
-  "eirik-otto.jpg": eirikOtto,
-  "falko-smirat.jpg": falkoSmirat,
-  "joerg-fluegge.jpg": joergFluegge,
-  "oliver-moeller.jpg": oliverMoeller,
-  "paul-rosenbusch.jpg": paulRosenbusch,
-  "reimund-meffert.jpg": reimundMeffert,
-  "uwe-straubel.jpg": uweStraubel,
+  "eirik-otto.jpg": `${SUPABASE_STORAGE_URL}/1761503790728-team-eirik-otto.jpg`,
+  "falko-smirat.jpg": `${SUPABASE_STORAGE_URL}/1761503791391-team-falko-smirat.jpg`,
+  "joerg-fluegge.jpg": `${SUPABASE_STORAGE_URL}/1761503792040-team-joerg-fluegge.jpg`,
+  "oliver-moeller.jpg": `${SUPABASE_STORAGE_URL}/1761503792711-team-oliver-moeller.jpg`,
+  "paul-rosenbusch.jpg": `${SUPABASE_STORAGE_URL}/1761503793362-team-paul-rosenbusch.jpg`,
+  "reimund-meffert.jpg": `${SUPABASE_STORAGE_URL}/1761503794002-team-reimund-meffert.jpg`,
+  "uwe-straubel.jpg": `${SUPABASE_STORAGE_URL}/1761503794660-team-uwe-straubel.jpg`,
 };
 
-// Resolve DB-stored paths like "/src/assets/team/*.jpg" to the correct built URL
+// Resolve DB-stored paths to Supabase Storage URLs
 export function resolveTeamImage(url?: string | null): string | undefined {
   if (!url) return undefined;
-  // Normalize leading "public/" which is incorrect for served assets
-  if (url.startsWith('public/')) {
-    url = url.replace(/^public\//, '/');
+
+  // If already a full Supabase URL, return as-is
+  if (url.startsWith('https://pouyacqshyiqbczmypvd.supabase.co/storage')) {
+    return url;
   }
-  // Public uploads are served from / directly
-  if (url.includes('lovable-uploads/')) {
-    return url.replace(/^\/?.*lovable-uploads\//, '/lovable-uploads/');
-  }
+
+  // Extract filename and map to Supabase Storage URL
   const filename = url.split('/').pop() || '';
   return teamImageMap[filename] || url;
 }
