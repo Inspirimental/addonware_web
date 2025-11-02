@@ -293,8 +293,7 @@ Wir finden die Lösung, die zu Ihnen passt – ob selbst gehostet, dediziert gem
                   </p>
                   <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
                     <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                      Digitale Souveränität beginnt mit bewussten Entscheidungen über Daten, Tools und Strukturen.
-                      Wir helfen, diese Grundlagen sauber aufzubauen.
+                      Digitalisierung macht nur frei, wenn man weiß, was im Hintergrund läuft. Wer nicht in die Tiefe will, bleibt abhängig – wir bauen mit Ihnen Systeme, die heute entlasten – und morgen Innovation ermöglichen.
                     </p>
                   </div>
                 </div>
