@@ -197,11 +197,10 @@ const StrukturCompliance = () => {
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">
-                  Warum das Thema Struktur & Compliance entscheidend ist
+                  Warum Digitale Souveränität & Compliance entscheidend ist
                 </h2>
                 <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                  Compliance ist kein Papierkrieg – es ist ein Fundament für nachhaltiges Wachstum.
-                  Wir helfen, die Balance zwischen Regulierung und Beweglichkeit zu finden.
+                  Compliance ist nicht das, was Fortschritt bremst – sondern das, was ihn absichert. Wir entwickeln Konzepte, wie man den Handlungsspielraum zwischen Regulierung und Produktivität optimal nutzen kann.
                 </p>
               </div>
 
@@ -216,7 +215,7 @@ const StrukturCompliance = () => {
                         Datenschutz, der funktioniert
                       </h3>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Wir bringen DSGVO, revDSG & Co. vom Papier in die Praxis – nicht als Checkliste, sondern als Teil der Organisation.
+                        Die Datenschutzanforderungen rauben Ihnen den letzten Nerv? Wir bringen DSGVO, revDSG & Co. vom Papier in die Praxis – nicht als Checkliste, sondern als Teil der Organisation.
                       </p>
                     </div>
                   </div>
@@ -229,10 +228,10 @@ const StrukturCompliance = () => {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
-                        Verantwortung, die greift
+                        Digitale Souveränität statt Abhängigkeit
                       </h3>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Gute Compliance braucht klare Prozesse. Wir helfen, Zuständigkeiten, Freigaben und Risiken sauber zu regeln.
+                        Wissen Sie, wo Ihre Daten liegen – und wer darauf Zugriff hat? Genau das finden wir heraus und geben Ihnen Ihren Entscheidungsraum zurück.
                       </p>
                     </div>
                   </div>
@@ -261,10 +260,11 @@ const StrukturCompliance = () => {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
-                        Struktur schafft Handlungsspielraum
+                        Angst vor der Cloud?
                       </h3>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Wer Abläufe kennt, gewinnt Zeit – für strategische Arbeit statt Firefighting.
+                        Die Cloud-Diskussion von gestern hilft heute keinem weiter.
+Wir finden die Lösung, die zu Ihnen passt – ob selbst gehostet, dediziert gemietet oder souverän integriert.
                       </p>
                     </div>
                   </div>
