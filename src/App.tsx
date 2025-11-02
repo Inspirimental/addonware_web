@@ -5,30 +5,32 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
-import Services from "./pages/Services";
-import ServiceDetail from "./pages/ServiceDetail";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import CaseStudies from "./pages/CaseStudies";
-import CaseStudyDetail from "./pages/CaseStudyDetail";
-import Pricing from "./pages/Pricing";
-import Partners from "./pages/Partners";
-import QuestionnaireTransformation from "./pages/QuestionnaireTransformation";
-import QuestionnaireFuehrung from "./pages/QuestionnaireFuehrung";
-import QuestionnaireDigitaleSouveraenitaet from "./pages/QuestionnaireDigitaleSouveraenitaet";
-import Impressum from "./pages/Impressum";
-import Datenschutz from "./pages/Datenschutz";
-import AGB from "./pages/AGB";
-import Admin from "./pages/Admin";
-import Auth from "./pages/Auth";
-import Profile from "./pages/Profile";
-import EmployeeDetail from "./pages/EmployeeDetail";
 import NotFound from "./pages/NotFound";
-import FuehrungskulturStrategie from "./pages/services/FuehrungskulturStrategie";
-import DigitaleSouveraenitaetCompliance from "./pages/services/DigitaleSouveraenitaetCompliance";
-import FachbereicheDigitalisierung from "./pages/services/FachbereicheDigitalisierung";
-import KomplexitaetMeistern from "./pages/services/KomplexitaetMeistern";
+
+const Services = lazy(() => import("./pages/Services"));
+const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const CaseStudies = lazy(() => import("./pages/CaseStudies"));
+const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail"));
+const Pricing = lazy(() => import("./pages/Pricing"));
+const Partners = lazy(() => import("./pages/Partners"));
+const QuestionnaireTransformation = lazy(() => import("./pages/QuestionnaireTransformation"));
+const QuestionnaireFuehrung = lazy(() => import("./pages/QuestionnaireFuehrung"));
+const QuestionnaireDigitaleSouveraenitaet = lazy(() => import("./pages/QuestionnaireDigitaleSouveraenitaet"));
+const Impressum = lazy(() => import("./pages/Impressum"));
+const Datenschutz = lazy(() => import("./pages/Datenschutz"));
+const AGB = lazy(() => import("./pages/AGB"));
+const Admin = lazy(() => import("./pages/Admin"));
+const Auth = lazy(() => import("./pages/Auth"));
+const Profile = lazy(() => import("./pages/Profile"));
+const EmployeeDetail = lazy(() => import("./pages/EmployeeDetail"));
+const FuehrungskulturStrategie = lazy(() => import("./pages/services/FuehrungskulturStrategie"));
+const DigitaleSouveraenitaetCompliance = lazy(() => import("./pages/services/DigitaleSouveraenitaetCompliance"));
+const FachbereicheDigitalisierung = lazy(() => import("./pages/services/FachbereicheDigitalisierung"));
+const KomplexitaetMeistern = lazy(() => import("./pages/services/KomplexitaetMeistern"));
 
 const queryClient = new QueryClient();
 
@@ -40,6 +42,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
@@ -68,6 +71,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </Suspense>
       </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>
