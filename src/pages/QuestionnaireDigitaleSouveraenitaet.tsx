@@ -49,9 +49,9 @@ const benefits = [
 ];
 
 const QuestionnaireDigitaleSouveraenitaet = () => {
-  const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const slug = 'digitale-souveraenitaet';
 
   const [questionnaire, setQuestionnaire] = useState<Questionnaire | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -66,10 +66,9 @@ const QuestionnaireDigitaleSouveraenitaet = () => {
 
   useEffect(() => {
     loadQuestionnaire();
-  }, [slug]);
+  }, []);
 
   const loadQuestionnaire = async () => {
-    if (!slug) return;
 
     try {
       setIsLoading(true);
