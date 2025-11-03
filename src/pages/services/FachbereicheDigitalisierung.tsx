@@ -97,9 +97,11 @@ const FachbereicheDigitalisierung = () => {
             <div className="max-w-5xl mx-auto">
               <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-12 items-center">
                 <div className="flex justify-center md:justify-start">
-                  <div className="w-48 h-48 md:w-full md:h-auto aspect-square rounded-full bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800 flex items-center justify-center shadow-md">
-                    <span className="text-slate-500 dark:text-slate-400 text-sm">Jörg Flügge</span>
-                  </div>
+                  <img
+                    src="https://pouyacqshyiqbczmypvd.supabase.co/storage/v1/object/public/images/1761503792040-team-joerg-fluegge.jpg"
+                    alt="Jörg Flügge, Berater für digitale Transformationsprojekte bei Addonware"
+                    className="w-48 h-48 md:w-full md:h-auto aspect-square object-cover rounded-full shadow-md"
+                  />
                 </div>
 
                 <div className="space-y-6">
