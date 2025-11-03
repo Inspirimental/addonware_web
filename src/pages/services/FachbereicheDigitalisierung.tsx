@@ -243,7 +243,7 @@ const FachbereicheDigitalisierung = () => {
               <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 <div className="order-2 md:order-1">
                   <img
-                    src="/Aufwand Nutzen.jpg"
+                    src="https://pouyacqshyiqbczmypvd.supabase.co/storage/v1/object/public/images/1762160173845-xwr39k.webp"
                     alt="Aufwand-Nutzen-Matrix: Quick Wins, Schlüsselprojekte, Lückenfüller, Zeitfresser"
                     className="w-full h-auto rounded-lg shadow-lg"
                   />
