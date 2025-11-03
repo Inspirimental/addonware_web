@@ -68,13 +68,11 @@ export const SEO = ({
     updateMeta('og:title', fullTitle, true);
     updateMeta('og:description', description, true);
     updateMeta('og:image', fullImage, true);
+    updateMeta('og:site_name', SITE_NAME, true);
 
-    updateMeta('twitter:card', 'summary_large_image');
-    updateMeta('twitter:domain', new URL(SITE_URL).hostname, true);
-    updateMeta('twitter:url', fullUrl, true);
-    updateMeta('twitter:title', fullTitle);
-    updateMeta('twitter:description', description);
-    updateMeta('twitter:image', fullImage);
+    if (author) {
+      updateMeta('article:author', author, true);
+    }
 
     if (publishedTime) {
       updateMeta('article:published_time', publishedTime, true);
@@ -82,6 +80,13 @@ export const SEO = ({
     if (modifiedTime) {
       updateMeta('article:modified_time', modifiedTime, true);
     }
+
+    updateMeta('twitter:card', 'summary_large_image');
+    updateMeta('twitter:domain', new URL(SITE_URL).hostname, true);
+    updateMeta('twitter:url', fullUrl, true);
+    updateMeta('twitter:title', fullTitle);
+    updateMeta('twitter:description', description);
+    updateMeta('twitter:image', fullImage);
 
     if (structuredData) {
       let scriptElement = document.querySelector('script[type="application/ld+json"]');

@@ -44,12 +44,14 @@ const Index = () => {
         keywords="Digitale Transformation, IT-Beratung, IT-Strategie, Compliance, Digitalisierung, IT-Infrastruktur"
         url="/"
         type="website"
+        author="addonware GmbH"
+        publishedTime="2025-01-01T00:00:00+00:00"
         structuredData={structuredData}
       />
       <Navigation onConfiguratorOpen={handleConfiguratorOpen} />
 
       <main className="pt-16">
-        <article>
+        <div>
           <Hero onConfiguratorOpen={handleConfiguratorOpen} />
           <section id="services" aria-label="Unsere Dienstleistungen">
             <Services />
@@ -57,7 +59,7 @@ const Index = () => {
           <section id="contact" aria-label="Kontaktieren Sie uns">
             <Contact />
           </section>
-        </article>
+        </div>
       </main>
 
       <Footer />
