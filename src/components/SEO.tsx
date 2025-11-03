@@ -17,8 +17,8 @@ interface SEOProps {
 const SITE_NAME = 'Addonware';
 const DEFAULT_TITLE = 'Addonware - Digitale Transformation & IT-Beratung';
 const DEFAULT_DESCRIPTION = 'Experten für digitale Transformation, IT-Strategie und Compliance. Wir unterstützen Unternehmen bei der Digitalisierung und Optimierung ihrer IT-Infrastruktur.';
-const DEFAULT_IMAGE = '/heroimage_og.webp';
-const SITE_URL = 'https://addonware.de';
+const DEFAULT_IMAGE = 'https://pouyacqshyiqbczmypvd.supabase.co/storage/v1/object/public/images/heroimage_og.webp';
+const SITE_URL = 'https://www.addonware.de';
 
 export const SEO = ({
   title,
@@ -66,14 +66,19 @@ export const SEO = ({
     updateMeta('og:title', fullTitle, true);
     updateMeta('og:description', description, true);
     updateMeta('og:image', fullImage, true);
+    updateMeta('og:image:width', '1200', true);
+    updateMeta('og:image:height', '630', true);
+    updateMeta('og:image:alt', fullTitle, true);
     updateMeta('og:url', fullUrl, true);
     updateMeta('og:type', type, true);
     updateMeta('og:site_name', SITE_NAME, true);
+    updateMeta('og:locale', 'de_DE', true);
 
     updateMeta('twitter:card', 'summary_large_image');
     updateMeta('twitter:title', fullTitle);
     updateMeta('twitter:description', description);
     updateMeta('twitter:image', fullImage);
+    updateMeta('twitter:image:alt', fullTitle);
 
     if (publishedTime) {
       updateMeta('article:published_time', publishedTime, true);
