@@ -37,9 +37,9 @@ const FachbereicheSmarteProjekte = () => {
     },
     {
       icon: Heart,
-      title: "Pflege & Gesundheit digital unterstützen",
-      description: "Software, die Pflegekräfte entlastet, Doppelarbeit vermeidet und medizinische Qualität stärkt – ohne den Menschen aus dem Blick zu verlieren.",
-      example: "Beispiel: Digitale Fallakte, intelligente Schichtplanung, mobile Dokumentation"
+      title: "Praxis & Klinik smart vernetzen",
+      description: "Digitale Workflows, die entlasten – von der Anmeldung bis zur Abrechnung. Wir unterstützen Ärzt:innen und Verwaltungsteams mit Lösungen, die funktionieren – auch unter Zeitdruck.",
+      example: "Beispiel: Digitale Patientenaufnahme, automatisierte Abrechnungsprozesse, interdisziplinäre Kommunikation"
     },
     {
       icon: Bus,
