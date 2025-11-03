@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { ArrowRight, X, Target, Zap, Users, TrendingUp, TestTube, FileText, Users2, Quote, Factory, Heart, Bus, FolderOpen } from "lucide-react";
+import { ArrowRight, X, Target, Zap, Users, TrendingUp, TestTube, FileText, Users2, Quote, Factory, Heart, Bus, FolderOpen, ChevronLeft, ChevronRight } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Configurator } from "@/components/Configurator";
@@ -17,10 +17,43 @@ const FachbereicheSmarteProjekte = () => {
   const [questionnaireTitle, setQuestionnaireTitle] = useState<string>("Reifegrad-Check Digitalisierung");
   const [questionCount, setQuestionCount] = useState<number>(10);
   const [joergImage, setJoergImage] = useState<string | null>(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isDraggingSlider, setIsDraggingSlider] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   const digitalizationCases = caseStudies.filter(cs =>
     cs.tags?.includes('digitalization') || cs.tags?.includes('transformation')
   );
+
+  const cards = [
+    {
+      icon: Factory,
+      title: "Digitale Produktion & Smart Factory",
+      description: "Smarte Produktionsprozesse, Live-Daten aus der Fertigung und vernetzte Systeme, die helfen, Material, Energie und Zeit zu sparen.",
+      example: "Beispiel: Maschinendaten in Echtzeit, Rüstzeitenverkürzung, Nachkalkulation automatisieren"
+    },
+    {
+      icon: Heart,
+      title: "Pflege & Gesundheit digital unterstützen",
+      description: "Software, die Pflegekräfte entlastet, Doppelarbeit vermeidet und medizinische Qualität stärkt – ohne den Menschen aus dem Blick zu verlieren.",
+      example: "Beispiel: Digitale Fallakte, intelligente Schichtplanung, mobile Dokumentation"
+    },
+    {
+      icon: Bus,
+      title: "Smarte Mobilität & vernetzte Dienste",
+      description: "Wenn Verkehr, Logistik oder ÖPNV intelligenter werden sollen, braucht es mehr als Sensorik: strukturierte Daten, klare Steuerung und nutzerfreundliche Lösungen.",
+      example: "Beispiel: L4-Pilotprojekt, Routenoptimierung, digitale Nutzerportale"
+    },
+    {
+      icon: FolderOpen,
+      title: "Verwaltung vereinfachen & Prozesse automatisieren",
+      description: "Digitale Workflows, automatisierte Freigaben, transparente Akten – wir machen Verwaltung wieder handlungsfähig und anschlussfähig.",
+      example: "Beispiel: Rechnungseingang, Fördermittelverwaltung, Bürgerportale"
+    }
+  ];
 
   useEffect(() => {
     const loadQuestionnaireData = async () => {
@@ -74,6 +107,77 @@ const FachbereicheSmarteProjekte = () => {
     loadQuestionnaireData();
     loadJoergImage();
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!scrollContainerRef.current) return;
+
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      setShowLeftArrow(scrollLeft > 10);
+      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10);
+
+      const maxScroll = scrollWidth - clientWidth;
+      const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
+      setScrollProgress(progress);
+    };
+
+    const container = scrollContainerRef.current;
+    if (container) {
+      handleScroll();
+      container.addEventListener('scroll', handleScroll);
+      window.addEventListener('resize', handleScroll);
+
+      return () => {
+        container.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('resize', handleScroll);
+      };
+    }
+  }, []);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (!scrollContainerRef.current) return;
+
+    const scrollAmount = 350;
+    const newScrollLeft = direction === 'left'
+      ? scrollContainerRef.current.scrollLeft - scrollAmount
+      : scrollContainerRef.current.scrollLeft + scrollAmount;
+
+    scrollContainerRef.current.scrollTo({
+      left: newScrollLeft,
+      behavior: 'smooth'
+    });
+  };
+
+  const handleSliderPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    setIsDraggingSlider(true);
+    const target = e.currentTarget;
+    target.setPointerCapture(e.pointerId);
+    updateScrollFromSliderPosition(e);
+  };
+
+  const handleSliderPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (isDraggingSlider) {
+      updateScrollFromSliderPosition(e);
+    }
+  };
+
+  const handleSliderPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    setIsDraggingSlider(false);
+    const target = e.currentTarget;
+    target.releasePointerCapture(e.pointerId);
+  };
+
+  const updateScrollFromSliderPosition = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!scrollContainerRef.current || !sliderRef.current) return;
+
+    const rect = sliderRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percentage = Math.max(0, Math.min(1, x / rect.width));
+
+    const { scrollWidth, clientWidth } = scrollContainerRef.current;
+    const maxScroll = scrollWidth - clientWidth;
+    scrollContainerRef.current.scrollLeft = percentage * maxScroll;
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -328,80 +432,78 @@ const FachbereicheSmarteProjekte = () => {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="bg-slate-50 dark:bg-slate-800 p-8 rounded-lg border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center">
-                      <Factory className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
-                        Digitale Produktion & Smart Factory
-                      </h3>
-                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                        Smarte Produktionsprozesse, Live-Daten aus der Fertigung und vernetzte Systeme, die helfen, Material, Energie und Zeit zu sparen.
-                      </p>
-                      <p className="text-sm text-slate-500 dark:text-slate-400 italic">
-                        → Beispiel: Maschinendaten in Echtzeit, Rüstzeitenverkürzung, Nachkalkulation automatisieren
-                      </p>
-                    </div>
-                  </div>
+              <div className="relative -mx-4 px-4">
+                {showLeftArrow && (
+                  <button
+                    onClick={() => scroll('left')}
+                    className="hidden md:flex absolute left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 hover:bg-white dark:hover:bg-slate-800 shadow-lg transition-all duration-300 hover:scale-110"
+                    aria-label="Vorherige Kacheln"
+                  >
+                    <ChevronLeft className="w-6 h-6 text-gray-800 dark:text-slate-200" />
+                  </button>
+                )}
+
+                {showRightArrow && (
+                  <button
+                    onClick={() => scroll('right')}
+                    className="hidden md:flex absolute right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 hover:bg-white dark:hover:bg-slate-800 shadow-lg transition-all duration-300 hover:scale-110"
+                    aria-label="Nächste Kacheln"
+                  >
+                    <ChevronRight className="w-6 h-6 text-gray-800 dark:text-slate-200" />
+                  </button>
+                )}
+
+                {showLeftArrow && (
+                  <div className="hidden md:block absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white dark:from-slate-900 to-transparent z-10 pointer-events-none" />
+                )}
+
+                {showRightArrow && (
+                  <div className="hidden md:block absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white dark:from-slate-900 to-transparent z-10 pointer-events-none" />
+                )}
+
+                <div
+                  ref={scrollContainerRef}
+                  className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide scroll-smooth mb-16"
+                >
+                  {cards.map((card, index) => (
+                    <Card
+                      key={index}
+                      className="flex-shrink-0 w-[280px] md:w-[320px] border-2 hover:border-primary transition-all hover:shadow-lg group snap-start bg-white dark:bg-slate-800 dark:border-slate-700 flex flex-col"
+                    >
+                      <CardContent className="pt-6 flex flex-col flex-1">
+                        <card.icon className="h-10 w-10 text-primary mb-4 group-hover:scale-110 transition-transform" strokeWidth={1.5} />
+                        <h3 className="text-lg font-semibold mb-3 text-slate-900 dark:text-slate-100">
+                          {card.title}
+                        </h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4 flex-1">
+                          {card.description}
+                        </p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 italic mt-auto">
+                          → {card.example}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
 
-                <div className="bg-slate-50 dark:bg-slate-800 p-8 rounded-lg border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center">
-                      <Heart className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
-                        Pflege & Gesundheit digital unterstützen
-                      </h3>
-                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                        Software, die Pflegekräfte entlastet, Doppelarbeit vermeidet und medizinische Qualität stärkt – ohne den Menschen aus dem Blick zu verlieren.
-                      </p>
-                      <p className="text-sm text-slate-500 dark:text-slate-400 italic">
-                        → Beispiel: Digitale Fallakte, intelligente Schichtplanung, mobile Dokumentation
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-slate-50 dark:bg-slate-800 p-8 rounded-lg border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center">
-                      <Bus className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
-                        Smarte Mobilität & vernetzte Dienste
-                      </h3>
-                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                        Wenn Verkehr, Logistik oder ÖPNV intelligenter werden sollen, braucht es mehr als Sensorik: strukturierte Daten, klare Steuerung und nutzerfreundliche Lösungen.
-                      </p>
-                      <p className="text-sm text-slate-500 dark:text-slate-400 italic">
-                        → Beispiel: L4-Pilotprojekt, Routenoptimierung, digitale Nutzerportale
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-slate-50 dark:bg-slate-800 p-8 rounded-lg border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center">
-                      <FolderOpen className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
-                        Verwaltung vereinfachen & Prozesse automatisieren
-                      </h3>
-                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                        Digitale Workflows, automatisierte Freigaben, transparente Akten – wir machen Verwaltung wieder handlungsfähig und anschlussfähig.
-                      </p>
-                      <p className="text-sm text-slate-500 dark:text-slate-400 italic">
-                        → Beispiel: Rechnungseingang, Fördermittelverwaltung, Bürgerportale
-                      </p>
-                    </div>
+                {/* Horizontal Slider */}
+                <div className="max-w-md mx-auto mt-8 px-4">
+                  <div
+                    ref={sliderRef}
+                    className="relative h-2 w-full cursor-pointer rounded-full bg-secondary"
+                    onPointerDown={handleSliderPointerDown}
+                    onPointerMove={handleSliderPointerMove}
+                    onPointerUp={handleSliderPointerUp}
+                    onPointerCancel={handleSliderPointerUp}
+                  >
+                    <div
+                      className={`absolute top-1/2 -translate-y-1/2 h-4 w-4 rounded-full bg-primary shadow-md transition-transform ${
+                        isDraggingSlider ? 'scale-125' : 'scale-100'
+                      }`}
+                      style={{
+                        left: `calc(${scrollProgress * 100}% - 8px)`,
+                      }}
+                    />
                   </div>
                 </div>
               </div>
