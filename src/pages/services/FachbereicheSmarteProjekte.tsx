@@ -289,6 +289,40 @@ const FachbereicheSmarteProjekte = () => {
           </div>
         </section>
 
+        <section className="py-20 bg-slate-50 dark:bg-slate-800/50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-12 items-center">
+                <div className="flex justify-center md:justify-start">
+                  <div className="w-48 h-48 md:w-full md:h-auto aspect-square bg-slate-200 dark:bg-slate-700 rounded-full shadow-md flex items-center justify-center">
+                    <span className="text-slate-400 dark:text-slate-500 text-sm text-center px-4">Profilbild</span>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  <blockquote className="text-lg md:text-xl text-slate-800 dark:text-slate-200 leading-relaxed">
+                    <p className="mb-4">
+                      „Unsere digitalen Werkzeuge senken den Energieverbrauch, optimieren Personal- und Materialeinsatz und koordinieren das Rohstoff-Recycling."
+                    </p>
+                    <p className="text-base md:text-lg text-slate-700 dark:text-slate-300">
+                      Digitalisierung ist kein Selbstzweck. Wenn sie konkret wird, spart sie Ressourcen, schont Nerven – und stärkt den Geschäftserfolg. Wir helfen Fachbereichen, genau solche Projekte zu identifizieren und umzusetzen.
+                    </p>
+                  </blockquote>
+
+                  <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+                    <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      Enrico Jakusch
+                    </p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      Geschäftsführer, Jakusch Drehtechnik GmbH
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {!isLoading && digitalizationCases.length > 0 && (
           <section className="py-20 bg-white dark:bg-slate-900">
             <div className="container mx-auto px-4">
