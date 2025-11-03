@@ -162,58 +162,7 @@ const FachbereicheDigitalisierung = () => {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-16">
-                <div className="order-2 md:order-1">
-                  <img
-                    src="/Aufwand Nutzen.jpg"
-                    alt="Aufwand-Nutzen-Matrix: Quick Wins, Schlüsselprojekte, Lückenfüller, Zeitfresser"
-                    className="w-full h-auto rounded-lg shadow-lg"
-                  />
-                </div>
-                <div className="order-1 md:order-2 space-y-4">
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
-                    Der richtige Aufwand-Nutzen-Blick
-                  </h3>
-                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                    Nicht jede Idee verdient die gleiche Aufmerksamkeit. Wir helfen Ihnen, digitale Vorhaben in vier Kategorien einzuordnen:
-                  </p>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-2 h-2 bg-primary rounded-full mt-2"></div>
-                      <div>
-                        <strong className="text-slate-900 dark:text-slate-100">Quick Wins:</strong>
-                        <span className="text-slate-600 dark:text-slate-400"> Schnelle Erfolge mit geringem Aufwand – perfekt für den Einstieg</span>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-2 h-2 bg-primary rounded-full mt-2"></div>
-                      <div>
-                        <strong className="text-slate-900 dark:text-slate-100">Schlüsselprojekte:</strong>
-                        <span className="text-slate-600 dark:text-slate-400"> Hoher Nutzen rechtfertigt den Aufwand – strategische Priorität</span>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-2 h-2 bg-slate-400 rounded-full mt-2"></div>
-                      <div>
-                        <strong className="text-slate-900 dark:text-slate-100">Lückenfüller:</strong>
-                        <span className="text-slate-600 dark:text-slate-400"> Nett zu haben, aber keine Priorität</span>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-2 h-2 bg-red-500 rounded-full mt-2"></div>
-                      <div>
-                        <strong className="text-slate-900 dark:text-slate-100">Zeitfresser:</strong>
-                        <span className="text-slate-600 dark:text-slate-400"> Hoher Aufwand bei geringem Nutzen – besser vermeiden</span>
-                      </div>
-                    </li>
-                  </ul>
-                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed pt-2">
-                    Mit dieser Methode fokussieren wir uns auf das Wesentliche und sorgen dafür, dass Ihre Ressourcen dort eingesetzt werden, wo sie den größten Impact erzielen.
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-8 mb-16">
                 <div className="bg-white dark:bg-slate-900 p-8 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center">
@@ -279,6 +228,57 @@ const FachbereicheDigitalisierung = () => {
                       </p>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mt-16">
+                <div className="order-2 md:order-1">
+                  <img
+                    src="/Aufwand Nutzen.jpg"
+                    alt="Aufwand-Nutzen-Matrix: Quick Wins, Schlüsselprojekte, Lückenfüller, Zeitfresser"
+                    className="w-full h-auto rounded-lg shadow-lg"
+                  />
+                </div>
+                <div className="order-1 md:order-2 space-y-4">
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+                    Der richtige Aufwand-Nutzen-Blick
+                  </h3>
+                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                    Nicht jede Idee verdient die gleiche Aufmerksamkeit. Wir helfen Ihnen, digitale Vorhaben in vier Kategorien einzuordnen:
+                  </p>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-2 h-2 bg-primary rounded-full mt-2"></div>
+                      <div>
+                        <strong className="text-slate-900 dark:text-slate-100">Quick Wins:</strong>
+                        <span className="text-slate-600 dark:text-slate-400"> Schnelle Erfolge mit geringem Aufwand – perfekt für den Einstieg</span>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-2 h-2 bg-primary rounded-full mt-2"></div>
+                      <div>
+                        <strong className="text-slate-900 dark:text-slate-100">Schlüsselprojekte:</strong>
+                        <span className="text-slate-600 dark:text-slate-400"> Hoher Nutzen rechtfertigt den Aufwand – strategische Priorität</span>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-2 h-2 bg-slate-400 rounded-full mt-2"></div>
+                      <div>
+                        <strong className="text-slate-900 dark:text-slate-100">Lückenfüller:</strong>
+                        <span className="text-slate-600 dark:text-slate-400"> Nett zu haben, aber keine Priorität</span>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                      <div>
+                        <strong className="text-slate-900 dark:text-slate-100">Zeitfresser:</strong>
+                        <span className="text-slate-600 dark:text-slate-400"> Hoher Aufwand bei geringem Nutzen – besser vermeiden</span>
+                      </div>
+                    </li>
+                  </ul>
+                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed pt-2">
+                    Mit dieser Methode fokussieren wir uns auf das Wesentliche und sorgen dafür, dass Ihre Ressourcen dort eingesetzt werden, wo sie den größten Impact erzielen.
+                  </p>
                 </div>
               </div>
             </div>
