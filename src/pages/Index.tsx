@@ -45,7 +45,7 @@ const Index = () => {
         url="/"
         type="website"
         author="addonware GmbH"
-        publishedTime="2025-01-01T00:00:00+00:00"
+        publishedTime="2025-11-01T00:00:00+00:00"
         structuredData={structuredData}
       />
       <Navigation onConfiguratorOpen={handleConfiguratorOpen} />
