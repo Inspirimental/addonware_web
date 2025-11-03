@@ -162,6 +162,19 @@ const FachbereicheDigitalisierung = () => {
                 </p>
               </div>
 
+              <div className="flex justify-center mb-16">
+                <div className="max-w-2xl w-full">
+                  <img
+                    src="/Aufwand Nutzen.jpg"
+                    alt="Aufwand-Nutzen-Matrix: Quick Wins, Schlüsselprojekte, Lückenfüller, Zeitfresser"
+                    className="w-full h-auto rounded-lg shadow-lg"
+                  />
+                  <p className="text-center text-sm text-slate-600 dark:text-slate-400 mt-4 italic">
+                    Mit dem richtigen Aufwand-Nutzen-Blick priorisieren wir Quick Wins und Schlüsselprojekte – und vermeiden Zeitfresser.
+                  </p>
+                </div>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white dark:bg-slate-900 p-8 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow">
                   <div className="flex items-start gap-4">
