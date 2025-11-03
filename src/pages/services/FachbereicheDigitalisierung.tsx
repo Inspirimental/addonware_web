@@ -132,7 +132,7 @@ const FachbereicheDigitalisierung = () => {
                 <div className="space-y-6">
                   <blockquote className="text-lg md:text-xl text-slate-800 dark:text-slate-200 leading-relaxed">
                     <p className="mb-4">
-                      Wir haben keine Lust auf bunte Post-Its oder langatmige Change-Konzepte. Wir setzen mit den Teams direkt an – und schaffen Ergebnisse, die auch in der Fertigung, Verwaltung oder Pflege spürbar sind.
+                      Wir schicken keine Beraterarmee und schreiben auch keine hundertseitigen Lastenhefte. Entscheidend ist, die richtigen Hebel im Alltag zu finden – mit den Menschen, die den Betrieb am Laufen halten: in der Fertigung, der Verwaltung oder im Gesundheitswesen.
                     </p>
                   </blockquote>
 
