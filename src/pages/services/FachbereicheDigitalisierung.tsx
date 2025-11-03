@@ -1,129 +1,204 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { CheckCircle, ArrowRight, X, Workflow, Zap, Users2 } from "lucide-react";
+import { ArrowRight, X, Target, Zap, Users, TrendingUp, TestTube, FileText, Users2 } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Configurator } from "@/components/Configurator";
+import { useCaseStudies } from "@/hooks/useCaseStudies";
+import { supabase } from "@/integrations/supabase/client";
 
 const FachbereicheDigitalisierung = () => {
   const navigate = useNavigate();
   const [showConfigurator, setShowConfigurator] = useState(false);
+  const { caseStudies, isLoading } = useCaseStudies();
+  const [questionnaireTitle, setQuestionnaireTitle] = useState<string>("Reifegrad-Check Digitalisierung");
+  const [questionCount, setQuestionCount] = useState<number>(10);
+
+  const digitalizationCases = caseStudies.filter(cs =>
+    cs.tags?.includes('digitalization') || cs.tags?.includes('transformation')
+  );
+
+  useEffect(() => {
+    const loadQuestionnaireData = async () => {
+      try {
+        const { data: questionnaire, error: questionnaireError } = await supabase
+          .from("questionnaires")
+          .select("id, title")
+          .eq("slug", "digitalisierung")
+          .eq("is_active", true)
+          .single();
+
+        if (questionnaireError || !questionnaire) {
+          console.error("Error loading questionnaire:", questionnaireError);
+          return;
+        }
+
+        setQuestionnaireTitle(questionnaire.title);
+
+        const { data: questions, error: questionsError } = await supabase
+          .from("questionnaire_questions")
+          .select("id")
+          .eq("questionnaire_id", questionnaire.id);
+
+        if (questionsError) {
+          console.error("Error loading questions:", questionsError);
+          return;
+        }
+
+        setQuestionCount(questions?.length || 0);
+      } catch (error) {
+        console.error("Error loading questionnaire data:", error);
+      }
+    };
+
+    loadQuestionnaireData();
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation onConfiguratorOpen={() => setShowConfigurator(true)} />
 
       <main className="flex-1">
-        <section className="relative py-24 bg-gradient-to-br from-slate-50 via-cyan-50/30 to-slate-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-slate-900">
+        <section className="relative min-h-[80vh] flex items-center overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <img
+              src="https://pouyacqshyiqbczmypvd.supabase.co/storage/v1/object/public/images/1761564221762-duwsgl.webp"
+              alt="Fachbereiche & Digitalisierung"
+              className="w-full h-full object-cover object-right"
+              loading="eager"
+              fetchpriority="high"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-transparent" />
+          </div>
+
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-[1.2] tracking-tight">
                 Fachbereiche & Digitalisierung
               </h1>
-              <p className="text-xl md:text-2xl text-slate-600 mb-8 font-light">
-                Wandel sichtbar machen – dort, wo er wirkt
+
+              <p className="text-xl md:text-2xl text-primary mb-8 font-light">
+                Wirkung dort entfalten, wo sie gebraucht wird.
               </p>
-              <p className="text-lg text-slate-700 leading-relaxed mb-8">
-                Digitalisierung findet nicht in der IT-Abteilung statt – sondern dort, wo gearbeitet wird.
-                Wir begleiten Ihre Fachbereiche dabei, digitale Tools wirklich zu nutzen, Prozesse zu verbessern
-                und Veränderung gemeinsam zu gestalten.
+
+              <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
+                Digitale Transformation zeigt ihre Wirkung nicht in der Cloud – sondern im Alltag.
+                Wir unterstützen Unternehmen dabei, Ideen in konkrete Projekte zu überführen, die Prozesse vereinfachen, Mitarbeitende entlasten und Potenziale freisetzen.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  onClick={() => setShowConfigurator(true)}
-                  className="bg-primary hover:bg-primary-hover text-primary-foreground"
-                >
-                  Jetzt Beratungsgespräch vereinbaren
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={() => navigate("/contact")}
-                >
-                  Unverbindlich anfragen
-                </Button>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-white dark:bg-slate-900">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-12 items-center">
+                <div className="flex justify-center md:justify-start">
+                  <div className="w-48 h-48 md:w-full md:h-auto aspect-square rounded-full bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800 flex items-center justify-center shadow-md">
+                    <span className="text-slate-500 dark:text-slate-400 text-sm">Jörg Flügge</span>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  <blockquote className="text-lg md:text-xl text-slate-800 dark:text-slate-200 leading-relaxed">
+                    <p className="mb-4">
+                      Wir haben keine Lust auf bunte Post-Its oder langatmige Change-Konzepte. Wir setzen mit den Teams direkt an – und schaffen Ergebnisse, die auch in der Fertigung, Verwaltung oder Pflege spürbar sind.
+                    </p>
+                  </blockquote>
+
+                  <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+                    <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      Jörg Flügge
+                    </p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      Berater für digitale Transformationsprojekte
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-slate-50 dark:bg-slate-800">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-slate-900">
-                Unsere Leistungen im Überblick
-              </h2>
-
-              <div className="grid md:grid-cols-3 gap-8 mb-16">
-                <Card className="border-2 hover:border-primary transition-colors">
-                  <CardContent className="pt-6">
-                    <Workflow className="h-12 w-12 text-primary mb-4" />
-                    <h3 className="text-xl font-semibold mb-3 text-slate-900">
-                      Prozessdigitalisierung
-                    </h3>
-                    <p className="text-slate-600 leading-relaxed">
-                      Analoge Abläufe digital abbilden – ohne die Menschen aus den Augen zu
-                      verlieren, die damit arbeiten müssen.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-2 hover:border-primary transition-colors">
-                  <CardContent className="pt-6">
-                    <Zap className="h-12 w-12 text-primary mb-4" />
-                    <h3 className="text-xl font-semibold mb-3 text-slate-900">
-                      Tool-Einführung & Akzeptanz
-                    </h3>
-                    <p className="text-slate-600 leading-relaxed">
-                      Neue Software einführen, alte Gewohnheiten ablösen – mit Methodik,
-                      Geduld und klarer Kommunikation.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-2 hover:border-primary transition-colors">
-                  <CardContent className="pt-6">
-                    <Users2 className="h-12 w-12 text-primary mb-4" />
-                    <h3 className="text-xl font-semibold mb-3 text-slate-900">
-                      Change Management
-                    </h3>
-                    <p className="text-slate-600 leading-relaxed">
-                      Veränderung begleiten – nicht nur technisch, sondern vor allem menschlich
-                      und organisational.
-                    </p>
-                  </CardContent>
-                </Card>
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">
+                  Warum das Thema entscheidend ist
+                </h2>
+                <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                  Digitale Vorhaben scheitern oft nicht an Technik – sondern daran, dass kein echtes Projekt daraus wird.
+                  Wir helfen dabei, aus guten Ideen echte Wirkung zu machen: mit Fokus, Klarheit und passender Umsetzung.
+                </p>
               </div>
 
-              <div className="space-y-8">
-                <h3 className="text-2xl font-bold text-slate-900">
-                  Warum ist das wichtig?
-                </h3>
-                <div className="space-y-4 text-slate-700 leading-relaxed">
-                  <p>
-                    Digitalisierung scheitert selten an der Technik – sondern daran, dass Fachbereiche
-                    nicht abgeholt werden. Dass Tools eingeführt, aber nicht genutzt werden. Dass der
-                    Alltag weiterläuft wie bisher, nur mit mehr Systemen.
-                  </p>
-                  <p>
-                    Wir sorgen dafür, dass Digitalisierung dort ankommt, wo sie wirken soll: bei den
-                    Menschen, die täglich mit den Prozessen arbeiten.
-                  </p>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-white dark:bg-slate-900 p-8 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center">
+                      <Target className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
+                        Nicht jede Idee ist ein Projekt
+                      </h3>
+                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Ideen gibt es viele. Wir helfen, sie mit Aufwand-Nutzen-Blick realistisch einzuordnen – und holen die Menschen im Prozess mit ab.
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="bg-cyan-50 border-l-4 border-primary p-6 rounded-r-lg">
+                <div className="bg-white dark:bg-slate-900 p-8 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow">
                   <div className="flex items-start gap-4">
-                    <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center">
+                      <Zap className="w-6 h-6 text-primary" />
+                    </div>
                     <div>
-                      <h4 className="font-semibold text-slate-900 mb-2">Unser Ansatz</h4>
-                      <p className="text-slate-700">
-                        Wir moderieren zwischen Fachbereichen und IT, begleiten Einführungen operativ
-                        und schaffen Akzeptanz durch Transparenz und Beteiligung.
+                      <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
+                        Wirksamkeit schlägt Vision
+                      </h3>
+                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Jede Präsentation sieht erstmal gut aus. Aber erst in der Umsetzung zeigt sich, ob ein Projekt trägt.
+                        Wir sorgen dafür, dass die Umsetzung anschlussfähig wird.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white dark:bg-slate-900 p-8 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center">
+                      <Users className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
+                        Fachbereiche brauchen Autonomie
+                      </h3>
+                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Wenn Entscheidungen immer über fünf Tische gehen müssen, wird Digitalisierung zum Bremsklotz.
+                        Wir helfen, Entscheidungsräume dort zu schaffen, wo sie gebraucht werden.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white dark:bg-slate-900 p-8 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center">
+                      <TrendingUp className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
+                        Transformation braucht Rückenwind
+                      </h3>
+                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Ein Projekt braucht nicht nur Budget – sondern auch jemanden, der dahintersteht.
+                        Wir helfen, interne Projektverantwortung und Führung zusammenzubringen.
                       </p>
                     </div>
                   </div>
@@ -133,24 +208,116 @@ const FachbereicheDigitalisierung = () => {
           </div>
         </section>
 
-        <section className="py-20 bg-slate-50">
-          <div className="container mx-auto px-4 text-center">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900">
-                Bereit für den nächsten Schritt?
-              </h2>
-              <p className="text-lg text-slate-700 mb-8 leading-relaxed">
-                Lassen Sie uns gemeinsam klären, wie wir Ihre Fachbereiche bei der
-                Digitalisierung unterstützen können.
-              </p>
-              <Button
-                size="lg"
-                onClick={() => setShowConfigurator(true)}
-                className="bg-primary hover:bg-primary-hover text-primary-foreground"
-              >
-                Jetzt Beratungsgespräch vereinbaren
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+        {!isLoading && digitalizationCases.length > 0 && (
+          <section className="py-20 bg-white dark:bg-slate-900">
+            <div className="container mx-auto px-4">
+              <div className="max-w-5xl mx-auto">
+                <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-slate-900 dark:text-slate-100">
+                  Aus der Praxis
+                </h2>
+                <div className="grid md:grid-cols-2 gap-8">
+                  {digitalizationCases.slice(0, 2).map((caseStudy) => (
+                    <Card
+                      key={caseStudy.id}
+                      className="border-2 hover:border-primary transition-all hover:shadow-lg cursor-pointer bg-white dark:bg-slate-900 dark:border-slate-700"
+                      onClick={() => navigate(`/case-studies/${caseStudy.slug}`)}
+                    >
+                      <CardContent className="pt-6">
+                        <h3 className="text-xl font-semibold mb-3 text-slate-900 dark:text-slate-100">
+                          {caseStudy.title}
+                        </h3>
+                        <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                          {caseStudy.excerpt}
+                        </p>
+                        <Button variant="link" className="p-0 h-auto text-primary">
+                          Zum Case <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        <section className="py-20 bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-900">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
+                <div className="text-center mb-8">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+                    Wo steht Ihre Digitalisierung heute?
+                  </h2>
+                  <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+                    Mit unserem {questionnaireTitle} können Sie in {questionCount} Fragen schnell prüfen,
+                    wo Ihre Organisation steht. Wir bieten Ihnen zwei bewährte Einstiegswege:
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-lg border-2 border-slate-200 dark:border-slate-700 hover:border-primary transition-colors">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="bg-primary/10 dark:bg-primary/20 p-3 rounded-lg">
+                        <TestTube className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{questionnaireTitle}</h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                          Verschaffen Sie sich Klarheit über den Status Quo Ihrer Digitalisierung.
+                          Kostenlos und in wenigen Minuten.
+                        </p>
+                      </div>
+                    </div>
+                    <Button
+                      size="lg"
+                      onClick={() => navigate("/umfrage/digitalisierung")}
+                      className="w-full bg-primary hover:bg-primary-hover text-primary-foreground"
+                    >
+                      Jetzt Reifegrad testen
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </div>
+
+                  <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-lg border-2 border-slate-200 dark:border-slate-700 hover:border-primary transition-colors">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="bg-primary/10 dark:bg-primary/20 p-3 rounded-lg">
+                        <Users2 className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Beratungsgespräch</h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                          Direkter Austausch auf Augenhöhe. Gemeinsam entwickeln wir Lösungen für Ihre
+                          strategischen Herausforderungen.
+                        </p>
+                      </div>
+                    </div>
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      onClick={() => navigate("/contact")}
+                      className="w-full border-2"
+                    >
+                      Gespräch vereinbaren
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="text-center pt-6 border-t border-slate-200 dark:border-slate-700">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                    Sie suchen weitere Informationen zu spezifischen Themen?
+                  </p>
+                  <Button
+                    variant="link"
+                    onClick={() => navigate("/contact")}
+                    className="text-primary"
+                  >
+                    <FileText className="mr-2 h-4 w-4" />
+                    Whitepaper & Vertiefungen anfragen
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
