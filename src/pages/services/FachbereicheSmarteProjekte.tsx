@@ -250,9 +250,6 @@ const FachbereicheSmarteProjekte = () => {
                   />
                 </div>
                 <div className="order-1 md:order-2 space-y-4">
-                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed pt-2">
-                    Mit dieser Methode fokussieren wir uns auf das Wesentliche und sorgen dafür, dass Ihre Ressourcen dort eingesetzt werden, wo sie den größten Impact erzielen.
-                  </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
                       <div className="flex-shrink-0 w-2 h-2 bg-primary rounded-full mt-2"></div>
@@ -283,6 +280,9 @@ const FachbereicheSmarteProjekte = () => {
                       </div>
                     </li>
                   </ul>
+                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed pt-2">
+                    Mit dieser Methode fokussieren wir uns auf das Wesentliche und sorgen dafür, dass Ihre Ressourcen dort eingesetzt werden, wo sie den größten Impact erzielen.
+                  </p>
                 </div>
               </div>
             </div>
