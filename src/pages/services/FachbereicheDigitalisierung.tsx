@@ -95,7 +95,8 @@ const FachbereicheDigitalisierung = () => {
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-[1.2] tracking-tight">
-                Fachbereiche & Digitalisierung
+                Fachbereiche &<br />
+                Digitalisierung
               </h1>
 
               <p className="text-xl md:text-2xl text-primary mb-8 font-light">
