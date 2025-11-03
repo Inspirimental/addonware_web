@@ -100,7 +100,7 @@ const FachbereicheDigitalisierung = () => {
               </h1>
 
               <p className="text-xl md:text-2xl text-primary mb-8 font-light">
-                Wirkung dort entfalten, wo sie gebraucht wird.
+                Veränderung dort starten, wo sie wirklich gebraucht wird.
               </p>
 
               <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
