@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { ArrowRight, X, Target, Zap, Users, TrendingUp, TestTube, FileText, Users2 } from "lucide-react";
+import { ArrowRight, X, Target, Zap, Users, TrendingUp, TestTube, FileText, Users2, Quote } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Configurator } from "@/components/Configurator";
@@ -289,32 +289,25 @@ const FachbereicheSmarteProjekte = () => {
           </div>
         </section>
 
-        <section className="py-20 bg-slate-50 dark:bg-slate-800/50">
+        <section className="py-20 bg-slate-50 dark:bg-slate-800">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-12 items-center">
-                <div className="flex justify-center md:justify-start">
-                  <div className="w-48 h-48 md:w-full md:h-auto aspect-square bg-slate-200 dark:bg-slate-700 rounded-full shadow-md flex items-center justify-center">
-                    <span className="text-slate-400 dark:text-slate-500 text-sm text-center px-4">Profilbild</span>
+            <div className="max-w-4xl mx-auto">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="flex-shrink-0">
+                  <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 dark:from-primary/30 dark:to-primary/20 flex items-center justify-center border-2 border-primary/20">
+                    <Quote className="w-12 h-12 md:w-16 md:h-16 text-primary" strokeWidth={1.5} />
                   </div>
                 </div>
-
-                <div className="space-y-6">
-                  <blockquote className="text-lg md:text-xl text-slate-800 dark:text-slate-200 leading-relaxed">
-                    <p className="mb-4">
-                      „Unsere digitalen Werkzeuge senken den Energieverbrauch, optimieren Personal- und Materialeinsatz und koordinieren das Rohstoff-Recycling."
-                    </p>
-                    <p className="text-base md:text-lg text-slate-700 dark:text-slate-300">
-                      Digitalisierung ist kein Selbstzweck. Wenn sie konkret wird, spart sie Ressourcen, schont Nerven – und stärkt den Geschäftserfolg. Wir helfen Fachbereichen, genau solche Projekte zu identifizieren und umzusetzen.
-                    </p>
+                <div className="flex-1">
+                  <blockquote className="text-xl md:text-2xl font-light text-slate-700 dark:text-slate-200 mb-4 italic leading-relaxed">
+                    „Unsere digitalen Werkzeuge senken den Energieverbrauch, optimieren Personal- und Materialeinsatz und koordinieren das Rohstoff-Recycling."
                   </blockquote>
-
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mb-6">
+                    — Enrico Jakusch, Geschäftsführer, Jakusch Drehtechnik GmbH
+                  </p>
                   <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
-                    <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
-                      Enrico Jakusch
-                    </p>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
-                      Geschäftsführer, Jakusch Drehtechnik GmbH
+                    <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                      Digitalisierung ist kein Selbstzweck. Wenn sie konkret wird, spart sie Ressourcen, schont Nerven – und stärkt den Geschäftserfolg. Wir helfen Fachbereichen, genau solche Projekte zu identifizieren und umzusetzen.
                     </p>
                   </div>
                 </div>
