@@ -231,7 +231,16 @@ const FachbereicheDigitalisierung = () => {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mt-16">
+              <div className="text-center mt-20 mb-12">
+                <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">
+                  Der richtige Aufwand-Nutzen-Blick
+                </h3>
+                <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                  Nicht jede Idee verdient die gleiche Aufmerksamkeit. Wir helfen Ihnen, digitale Vorhaben in vier Kategorien einzuordnen:
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 <div className="order-2 md:order-1">
                   <img
                     src="/Aufwand Nutzen.jpg"
@@ -240,12 +249,6 @@ const FachbereicheDigitalisierung = () => {
                   />
                 </div>
                 <div className="order-1 md:order-2 space-y-4">
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
-                    Der richtige Aufwand-Nutzen-Blick
-                  </h3>
-                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                    Nicht jede Idee verdient die gleiche Aufmerksamkeit. Wir helfen Ihnen, digitale Vorhaben in vier Kategorien einzuordnen:
-                  </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
                       <div className="flex-shrink-0 w-2 h-2 bg-primary rounded-full mt-2"></div>
