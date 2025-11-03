@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { ArrowRight, X, Target, Zap, Users, TrendingUp, TestTube, FileText, Users2, Quote } from "lucide-react";
+import { ArrowRight, X, Target, Zap, Users, TrendingUp, TestTube, FileText, Users2, Quote, Factory, Heart, Bus, FolderOpen } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Configurator } from "@/components/Configurator";
@@ -309,6 +309,99 @@ const FachbereicheSmarteProjekte = () => {
                     <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
                       Digitalisierung ist kein Selbstzweck. Wenn sie konkret wird, spart sie Ressourcen, schont Nerven – und stärkt den Geschäftserfolg. Wir helfen Fachbereichen, genau solche Projekte zu identifizieren und umzusetzen.
                     </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-white dark:bg-slate-900">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-6">
+                  Was wir tun
+                </h2>
+                <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                  Wir bringen Bewegung in Ihre Digitalisierung – dort, wo sie gebraucht wird: im Alltag der Fachbereiche. Ob Verwaltung, Produktion oder Pflege – wir identifizieren Projekte, die echten Nutzen stiften, keine Dauerbaustellen sind und Ihre Organisation wirklich weiterbringen.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-slate-50 dark:bg-slate-800 p-8 rounded-lg border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center">
+                      <Factory className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
+                        Digitale Produktion & Smart Factory
+                      </h3>
+                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                        Smarte Produktionsprozesse, Live-Daten aus der Fertigung und vernetzte Systeme, die helfen, Material, Energie und Zeit zu sparen.
+                      </p>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 italic">
+                        → Beispiel: Maschinendaten in Echtzeit, Rüstzeitenverkürzung, Nachkalkulation automatisieren
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-slate-50 dark:bg-slate-800 p-8 rounded-lg border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center">
+                      <Heart className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
+                        Pflege & Gesundheit digital unterstützen
+                      </h3>
+                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                        Software, die Pflegekräfte entlastet, Doppelarbeit vermeidet und medizinische Qualität stärkt – ohne den Menschen aus dem Blick zu verlieren.
+                      </p>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 italic">
+                        → Beispiel: Digitale Fallakte, intelligente Schichtplanung, mobile Dokumentation
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-slate-50 dark:bg-slate-800 p-8 rounded-lg border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center">
+                      <Bus className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
+                        Smarte Mobilität & vernetzte Dienste
+                      </h3>
+                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                        Wenn Verkehr, Logistik oder ÖPNV intelligenter werden sollen, braucht es mehr als Sensorik: strukturierte Daten, klare Steuerung und nutzerfreundliche Lösungen.
+                      </p>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 italic">
+                        → Beispiel: L4-Pilotprojekt, Routenoptimierung, digitale Nutzerportale
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-slate-50 dark:bg-slate-800 p-8 rounded-lg border border-slate-200 dark:border-slate-700 hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center">
+                      <FolderOpen className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-3">
+                        Verwaltung vereinfachen & Prozesse automatisieren
+                      </h3>
+                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                        Digitale Workflows, automatisierte Freigaben, transparente Akten – wir machen Verwaltung wieder handlungsfähig und anschlussfähig.
+                      </p>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 italic">
+                        → Beispiel: Rechnungseingang, Fördermittelverwaltung, Bürgerportale
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
