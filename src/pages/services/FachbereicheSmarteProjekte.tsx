@@ -10,7 +10,7 @@ import { Configurator } from "@/components/Configurator";
 import { useCaseStudies } from "@/hooks/useCaseStudies";
 import { supabase } from "@/integrations/supabase/client";
 
-const FachbereicheDigitalisierung = () => {
+const FachbereicheSmarteProjekte = () => {
   const navigate = useNavigate();
   const [showConfigurator, setShowConfigurator] = useState(false);
   const { caseStudies, isLoading } = useCaseStudies();
@@ -84,7 +84,7 @@ const FachbereicheDigitalisierung = () => {
           <div className="absolute inset-0 z-0">
             <img
               src="https://pouyacqshyiqbczmypvd.supabase.co/storage/v1/object/public/images/1761564221762-duwsgl.webp"
-              alt="Fachbereiche & Digitalisierung"
+              alt="Fachbereiche & Smarte Projekte"
               className="w-full h-full object-cover object-right"
               loading="eager"
               fetchpriority="high"
@@ -422,4 +422,4 @@ const FachbereicheDigitalisierung = () => {
   );
 };
 
-export default FachbereicheDigitalisierung;
+export default FachbereicheSmarteProjekte;

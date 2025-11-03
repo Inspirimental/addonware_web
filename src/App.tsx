@@ -29,7 +29,7 @@ const Profile = lazy(() => import("./pages/Profile"));
 const EmployeeDetail = lazy(() => import("./pages/EmployeeDetail"));
 const FuehrungskulturStrategie = lazy(() => import("./pages/services/FuehrungskulturStrategie"));
 const DigitaleSouveraenitaetCompliance = lazy(() => import("./pages/services/DigitaleSouveraenitaetCompliance"));
-const FachbereicheDigitalisierung = lazy(() => import("./pages/services/FachbereicheDigitalisierung"));
+const FachbereicheSmarteProjekte = lazy(() => import("./pages/services/FachbereicheSmarteProjekte"));
 const KomplexitaetMeistern = lazy(() => import("./pages/services/KomplexitaetMeistern"));
 
 const queryClient = new QueryClient({
@@ -60,7 +60,8 @@ const App = () => (
           <Route path="/leistungen/fuehrungskultur-strategie" element={<FuehrungskulturStrategie />} />
           <Route path="/leistungen/digitale-souveraenitaet-compliance" element={<DigitaleSouveraenitaetCompliance />} />
           <Route path="/leistungen/struktur-compliance" element={<DigitaleSouveraenitaetCompliance />} />
-          <Route path="/leistungen/fachbereiche-digitalisierung" element={<FachbereicheDigitalisierung />} />
+          <Route path="/leistungen/fachbereiche-smarte-projekte" element={<FachbereicheSmarteProjekte />} />
+          <Route path="/leistungen/fachbereiche-digitalisierung" element={<FachbereicheSmarteProjekte />} />
           <Route path="/leistungen/komplexitaet-meistern" element={<KomplexitaetMeistern />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

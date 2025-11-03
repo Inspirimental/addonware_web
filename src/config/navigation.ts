@@ -17,7 +17,7 @@ export const navItems: NavItem[] = [
     submenu: [
       { label: "Führungskultur & Strategie", href: "/leistungen/fuehrungskultur-strategie" },
       { label: "Digitale Souveränität & Compliance", href: "/leistungen/digitale-souveraenitaet-compliance" },
-      { label: "Fachbereiche & Digitalisierung", href: "/leistungen/fachbereiche-digitalisierung" },
+      { label: "Fachbereiche & Smarte Projekte", href: "/leistungen/fachbereiche-smarte-projekte" },
       { label: "Komplexität meistern", href: "/leistungen/komplexitaet-meistern" }
     ]
   },
