@@ -114,13 +114,6 @@ const CaseStudies = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="flex flex-wrap gap-2">
-                      {study.tags && Array.isArray(study.tags) && study.tags.map((tag, tagIndex) => (
-                        <Badge key={tagIndex} variant="secondary" className="text-xs">
-                          {String(tag)}
-                        </Badge>
-                      ))}
-                    </div>
                   </CardHeader>
               <CardContent className="flex-1 flex flex-col">
                 <div className="space-y-4 flex-1">
@@ -129,16 +122,10 @@ const CaseStudies = () => {
                       {study.teaser_short}
                     </p>
                   ) : (
-                    <>
-                      <div>
-                        <h4 className="font-medium text-sm text-muted-foreground mb-1">Herausforderung</h4>
-                        <p className="text-sm line-clamp-2">{study.challenge}</p>
-                      </div>
-                      <div>
-                        <h4 className="font-medium text-sm text-muted-foreground mb-1">Ergebnis</h4>
-                        <p className="text-sm font-medium text-primary line-clamp-2">{study.result}</p>
-                      </div>
-                    </>
+                    <div>
+                      <h4 className="font-medium text-sm text-muted-foreground mb-1">Herausforderung</h4>
+                      <p className="text-sm line-clamp-3">{study.challenge}</p>
+                    </div>
                   )}
                 </div>
                 <div className="flex gap-2 mt-6">
