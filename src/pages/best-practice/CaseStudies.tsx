@@ -98,9 +98,14 @@ const CaseStudies = () => {
                     </div>
                   )}
                   <CardHeader>
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors w-fit">
-                        <IconComponent className="w-6 h-6 text-primary" />
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-start gap-3 flex-1 min-w-0">
+                        <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors shrink-0">
+                          <IconComponent className="w-6 h-6 text-primary" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs text-muted-foreground">{study.industry} • {study.category}</p>
+                        </div>
                       </div>
                       <div className="text-right shrink-0 ml-2">
                         <Badge variant="outline" className="mb-1 whitespace-nowrap min-w-[90px] justify-center">{study.duration}</Badge>
@@ -109,10 +114,7 @@ const CaseStudies = () => {
                         </div>
                       </div>
                     </div>
-                    <div>
-                      <CardTitle className="text-lg mb-1">{study.title}</CardTitle>
-                      <p className="text-sm text-muted-foreground">{study.industry} • {study.category}</p>
-                    </div>
+                    <CardTitle className="text-lg">{study.title}</CardTitle>
                   </CardHeader>
               <CardContent className="flex-1 flex flex-col">
                 <div className="space-y-4 flex-1">
