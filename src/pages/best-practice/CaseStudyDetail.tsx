@@ -203,7 +203,7 @@ const CaseStudyDetail = () => {
                 <p className="text-xl text-muted-foreground">{caseStudy.company}</p>
               </div>
             </div>
-            
+
             <div className="flex flex-wrap gap-4 mb-6">
               <Badge variant="outline" className="text-sm">{caseStudy.industry}</Badge>
               <Badge variant="secondary" className="text-sm">{caseStudy.category}</Badge>
@@ -220,6 +220,17 @@ const CaseStudyDetail = () => {
                 </Badge>
               ))}
             </div>
+
+            {/* Case Study Image */}
+            {caseStudy.image_url && (
+              <div className="mt-8 rounded-lg overflow-hidden">
+                <img
+                  src={caseStudy.image_url}
+                  alt={caseStudy.title}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            )}
           </div>
 
           {/* Content Grid */}
