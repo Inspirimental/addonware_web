@@ -42,7 +42,7 @@ Deno.serve(async (req: Request) => {
     const resendApiKey = Deno.env.get('RESEND_API_KEY');
     const fromEmail = Deno.env.get('FROM_EMAIL') || 'Addonware GmbH <info@addonware.de>';
     const logoUrl = 'https://pouyacqshyiqbczmypvd.supabase.co/storage/v1/object/public/images/1762076728695-0m6xcq.png';
-    const baseUrl = Deno.env.get('BASE_URL') || 'https://addonware.de';
+    const baseUrl = Deno.env.get('BASE_URL') || 'https://www.addonware.de';
 
     if (!resendApiKey) {
       console.error('RESEND_API_KEY not configured');
