@@ -99,14 +99,8 @@ const CaseStudies = () => {
                   )}
                   <CardHeader>
                     <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-3 flex-1">
-                        <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                          <IconComponent className="w-6 h-6 text-primary" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <CardTitle className="text-lg mb-1">{study.title}</CardTitle>
-                          <p className="text-sm text-muted-foreground">{study.industry} • {study.category}</p>
-                        </div>
+                      <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors w-fit">
+                        <IconComponent className="w-6 h-6 text-primary" />
                       </div>
                       <div className="text-right shrink-0 ml-2">
                         <Badge variant="outline" className="mb-1 whitespace-nowrap min-w-[90px] justify-center">{study.duration}</Badge>
@@ -114,6 +108,10 @@ const CaseStudies = () => {
                           {new Date(study.date).toLocaleDateString('de-DE', { month: 'long', year: 'numeric' })}
                         </div>
                       </div>
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg mb-1">{study.title}</CardTitle>
+                      <p className="text-sm text-muted-foreground">{study.industry} • {study.category}</p>
                     </div>
                   </CardHeader>
               <CardContent className="flex-1 flex flex-col">
