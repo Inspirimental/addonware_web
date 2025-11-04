@@ -29,8 +29,8 @@ export const Services = () => {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const touchStartXRef = useRef<number>(0);
-  const touchMoveDistanceRef = useRef<number>(0);
+  const isScrollingRef = useRef<boolean>(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const checkTouchDevice = () => {
@@ -83,6 +83,14 @@ export const Services = () => {
       const maxScroll = scrollWidth - clientWidth;
       const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
       setScrollProgress(progress);
+
+      isScrollingRef.current = true;
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      scrollTimeoutRef.current = setTimeout(() => {
+        isScrollingRef.current = false;
+      }, 150);
     };
 
     const container = scrollContainerRef.current;
@@ -91,33 +99,12 @@ export const Services = () => {
       container.addEventListener('scroll', handleScroll);
       window.addEventListener('resize', handleScroll);
 
-      let touchStartX = 0;
-      let touchStartY = 0;
-      const handleTouchStart = (e: TouchEvent) => {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-      };
-
-      const handleTouchMove = (e: TouchEvent) => {
-        if (!container) return;
-        const touchEndX = e.touches[0].clientX;
-        const touchEndY = e.touches[0].clientY;
-        const deltaX = touchStartX - touchEndX;
-        const deltaY = touchStartY - touchEndY;
-
-        if (Math.abs(deltaX) > Math.abs(deltaY)) {
-          e.preventDefault();
-        }
-      };
-
-      container.addEventListener('touchstart', handleTouchStart, { passive: true });
-      container.addEventListener('touchmove', handleTouchMove, { passive: false });
-
       return () => {
         container.removeEventListener('scroll', handleScroll);
         window.removeEventListener('resize', handleScroll);
-        container.removeEventListener('touchstart', handleTouchStart);
-        container.removeEventListener('touchmove', handleTouchMove);
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
       };
     }
   }, [cards]);
@@ -225,7 +212,11 @@ export const Services = () => {
 
           <div
             ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide scroll-smooth"
+            className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide scroll-smooth touch-pan-x"
+            style={{
+              WebkitOverflowScrolling: 'touch',
+              touchAction: 'pan-x'
+            }}
           >
             {cards.map((card, index) => (
               <Link
@@ -235,17 +226,9 @@ export const Services = () => {
                   w-[325px] aspect-[3/4]"
                 onMouseEnter={() => !isTouchDevice && setActiveCard(index)}
                 onMouseLeave={() => !isTouchDevice && setActiveCard(null)}
-                onTouchStart={(e) => {
-                  touchStartXRef.current = e.touches[0].clientX;
-                  touchMoveDistanceRef.current = 0;
-                }}
-                onTouchMove={(e) => {
-                  const touchX = e.touches[0].clientX;
-                  touchMoveDistanceRef.current = Math.abs(touchX - touchStartXRef.current);
-                }}
                 onClick={(e) => {
                   if (isTouchDevice) {
-                    if (touchMoveDistanceRef.current > 10) {
+                    if (isScrollingRef.current) {
                       e.preventDefault();
                       return;
                     }
