@@ -236,9 +236,16 @@ export const CaseStudyManager = () => {
               </div>
               <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{caseStudy.challenge}</p>
               <div className="flex items-center justify-between">
-                <span className={`text-xs px-2 py-1 rounded ${caseStudy.is_active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
-                  {caseStudy.is_active ? 'Aktiv' : 'Inaktiv'}
-                </span>
+                <div className="flex gap-2">
+                  <span className={`text-xs px-2 py-1 rounded ${caseStudy.is_active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
+                    {caseStudy.is_active ? 'Aktiv' : 'Inaktiv'}
+                  </span>
+                  {caseStudy.solution_locked && (
+                    <span className="text-xs px-2 py-1 rounded bg-amber-100 text-amber-800">
+                      Locked
+                    </span>
+                  )}
+                </div>
                 <div className="flex gap-2">
                   <Button
                     variant="outline"
