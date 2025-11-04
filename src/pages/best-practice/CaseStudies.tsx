@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Factory, Car, Database } from "lucide-react";
+import { ArrowRight, Factory, Car, Database, Lock } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -78,19 +78,36 @@ const CaseStudies = () => {
             {filteredCaseStudies.map((study) => {
               const IconComponent = getIconForCategory(study.category);
               return (
-                <Card key={study.id} className="group transition-all hover:shadow-card h-full flex flex-col">
+                <Card key={study.id} className="group transition-all hover:shadow-card h-full flex flex-col overflow-hidden">
+                  {study.image_url && (
+                    <div className="relative h-48 overflow-hidden bg-muted">
+                      <img
+                        src={study.image_url}
+                        alt={study.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      {study.solution_locked && (
+                        <div className="absolute top-3 right-3">
+                          <Badge variant="secondary" className="bg-background/90 backdrop-blur-sm">
+                            <Lock className="w-3 h-3 mr-1" />
+                            Nach Anmeldung
+                          </Badge>
+                        </div>
+                      )}
+                    </div>
+                  )}
                   <CardHeader>
                     <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-3 flex-1">
                         <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
                           <IconComponent className="w-6 h-6 text-primary" />
                         </div>
-                        <div>
+                        <div className="flex-1 min-w-0">
                           <CardTitle className="text-lg mb-1">{study.title}</CardTitle>
-                          <p className="text-sm text-muted-foreground">{study.industry}</p>
+                          <p className="text-sm text-muted-foreground">{study.industry} • {study.category}</p>
                         </div>
                       </div>
-                      <div className="text-right shrink-0">
+                      <div className="text-right shrink-0 ml-2">
                         <Badge variant="outline" className="mb-1 whitespace-nowrap min-w-[90px] justify-center">{study.duration}</Badge>
                         <div className="text-xs text-muted-foreground">
                           {new Date(study.date).toLocaleDateString('de-DE', { month: 'long', year: 'numeric' })}
@@ -107,30 +124,34 @@ const CaseStudies = () => {
                   </CardHeader>
               <CardContent className="flex-1 flex flex-col">
                 <div className="space-y-4 flex-1">
-                  <div>
-                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Herausforderung</h4>
-                    <p className="text-sm">{study.challenge}</p>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Lösung</h4>
-                    <p className="text-sm">{study.solution}</p>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Ergebnis</h4>
-                    <p className="text-sm font-medium text-primary">{study.result}</p>
-                  </div>
+                  {study.teaser_short ? (
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {study.teaser_short}
+                    </p>
+                  ) : (
+                    <>
+                      <div>
+                        <h4 className="font-medium text-sm text-muted-foreground mb-1">Herausforderung</h4>
+                        <p className="text-sm line-clamp-2">{study.challenge}</p>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-sm text-muted-foreground mb-1">Ergebnis</h4>
+                        <p className="text-sm font-medium text-primary line-clamp-2">{study.result}</p>
+                      </div>
+                    </>
+                  )}
                 </div>
                 <div className="flex gap-2 mt-6">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
+                  <Button
+                    variant="outline"
+                    size="sm"
                     className="flex-1"
                     onClick={() => navigate(`/case-studies/${study.id}`)}
                   >
-                    Details ansehen
+                    Mehr erfahren
                   </Button>
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     size="sm"
                     onClick={() => navigate(`/case-studies/${study.id}`)}
                   >

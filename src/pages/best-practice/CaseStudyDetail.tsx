@@ -1,30 +1,91 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, ArrowRight, CheckCircle, Target, Lightbulb } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { ArrowLeft, ArrowRight, CheckCircle, Target, Lightbulb, Lock, Mail, FileDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Configurator } from "@/components/Configurator";
 import { X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { type Tables } from "@/integrations/supabase/types";
+import { isCaseStudyUnlocked, unlockCaseStudy } from "@/lib/cookies";
+import { useToast } from "@/hooks/use-toast";
 
 type CaseStudyDB = Tables<'case_studies'>;
 
 const CaseStudyDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { toast } = useToast();
   const [isConfiguratorOpen, setIsConfiguratorOpen] = useState(false);
   const [caseStudy, setCaseStudy] = useState<CaseStudyDB | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isUnlocking, setIsUnlocking] = useState(false);
+  const [unlockForm, setUnlockForm] = useState({
+    name: '',
+    email: '',
+    organization: ''
+  });
+
+  const handleUnlock = async () => {
+    if (!id || !caseStudy) return;
+
+    setIsUnlocking(true);
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/unlock-case-study`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify({
+            email: unlockForm.email,
+            name: unlockForm.name,
+            organization: unlockForm.organization,
+            caseStudyId: id,
+            caseStudyTitle: caseStudy.title,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Fehler beim Freischalten');
+      }
+
+      toast({
+        title: "E-Mail versendet!",
+        description: "Bitte prüfen Sie Ihr E-Mail-Postfach. Sie erhalten in Kürze einen Link zur Freischaltung.",
+      });
+
+      setUnlockForm({ name: '', email: '', organization: '' });
+    } catch (error) {
+      console.error('Error unlocking case study:', error);
+      toast({
+        title: "Fehler",
+        description: error instanceof Error ? error.message : "Beim Freischalten ist ein Fehler aufgetreten.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsUnlocking(false);
+    }
+  };
+
   useEffect(() => {
     const fetchCaseStudy = async () => {
       if (!id) return;
-      
+
       try {
         const { data, error } = await supabase
           .from('case_studies')
@@ -32,12 +93,43 @@ const CaseStudyDetail = () => {
           .eq('id', id)
           .eq('is_active', true)
           .single();
-          
+
         if (error) {
           console.error('Error fetching case study:', error);
           setCaseStudy(null);
         } else {
           setCaseStudy(data);
+
+          const unlockToken = searchParams.get('unlock');
+          if (unlockToken && data.solution_locked) {
+            const { data: unlockData, error: unlockError } = await supabase
+              .from('case_study_unlocks')
+              .select('id')
+              .eq('unlock_token', unlockToken)
+              .eq('case_study_id', id)
+              .maybeSingle();
+
+            if (unlockData && !unlockError) {
+              await supabase
+                .from('case_study_unlocks')
+                .update({ unlocked_at: new Date().toISOString() })
+                .eq('id', unlockData.id);
+
+              unlockCaseStudy(id, unlockToken);
+              setIsUnlocked(true);
+
+              toast({
+                title: "Case Study freigeschaltet!",
+                description: "Sie können jetzt die vollständige Lösung einsehen.",
+              });
+
+              window.history.replaceState({}, '', `/case-studies/${id}`);
+            }
+          } else if (data.solution_locked) {
+            setIsUnlocked(isCaseStudyUnlocked(id));
+          } else {
+            setIsUnlocked(true);
+          }
         }
       } catch (err) {
         console.error('Error:', err);
@@ -46,9 +138,9 @@ const CaseStudyDetail = () => {
         setIsLoading(false);
       }
     };
-    
+
     fetchCaseStudy();
-  }, [id]);
+  }, [id, searchParams, toast]);
 
   if (isLoading) {
     return (
@@ -158,19 +250,136 @@ const CaseStudyDetail = () => {
                 </CardContent>
               </Card>
 
-              {/* Detailed Description */}
-              {caseStudy.detailed_description && (
+              {/* Problem Description */}
+              {caseStudy.problem_description && (
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <Lightbulb className="w-5 h-5" />
-                      Projektdetails
+                      <Target className="w-5 h-5" />
+                      Problemstellung
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm leading-relaxed">{caseStudy.detailed_description}</p>
+                    <p className="text-sm leading-relaxed whitespace-pre-line">{caseStudy.problem_description}</p>
                   </CardContent>
                 </Card>
+              )}
+
+              {/* Solution Section - Locked or Unlocked */}
+              {caseStudy.solution_locked ? (
+                isUnlocked ? (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <Lightbulb className="w-5 h-5" />
+                        Lösungsansatz
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <p className="text-sm leading-relaxed whitespace-pre-line">{caseStudy.solution_description}</p>
+
+                      {caseStudy.pdf_url && (
+                        <div className="pt-4 border-t">
+                          <Button
+                            variant="outline"
+                            className="w-full"
+                            onClick={() => window.open(caseStudy.pdf_url!, '_blank')}
+                          >
+                            <FileDown className="w-4 h-4 mr-2" />
+                            Case Study als PDF herunterladen
+                          </Button>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                ) : (
+                  <Card className="border-primary/20 bg-primary/5">
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <Lock className="w-5 h-5" />
+                        Vollständige Lösung freischalten
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                      <div className="space-y-2">
+                        <p className="text-sm text-muted-foreground">
+                          Möchten Sie mehr über unseren Lösungsansatz und die detaillierten Ergebnisse erfahren?
+                          Geben Sie Ihre Kontaktdaten ein und erhalten Sie sofortigen Zugang zur vollständigen Case Study.
+                        </p>
+                        <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
+                          <li>Detaillierter Lösungsansatz und Strategie</li>
+                          <li>Konkrete Umsetzungsschritte</li>
+                          <li>Messbare Ergebnisse und ROI</li>
+                          {caseStudy.pdf_url && <li>Download als PDF</li>}
+                        </ul>
+                      </div>
+
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="unlock-name">Name *</Label>
+                          <Input
+                            id="unlock-name"
+                            type="text"
+                            placeholder="Ihr Name"
+                            value={unlockForm.name}
+                            onChange={(e) => setUnlockForm({ ...unlockForm, name: e.target.value })}
+                            disabled={isUnlocking}
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="unlock-email">E-Mail *</Label>
+                          <Input
+                            id="unlock-email"
+                            type="email"
+                            placeholder="ihre.email@beispiel.de"
+                            value={unlockForm.email}
+                            onChange={(e) => setUnlockForm({ ...unlockForm, email: e.target.value })}
+                            disabled={isUnlocking}
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="unlock-organization">Organisation (optional)</Label>
+                          <Input
+                            id="unlock-organization"
+                            type="text"
+                            placeholder="Ihr Unternehmen"
+                            value={unlockForm.organization}
+                            onChange={(e) => setUnlockForm({ ...unlockForm, organization: e.target.value })}
+                            disabled={isUnlocking}
+                          />
+                        </div>
+
+                        <Button
+                          className="w-full"
+                          onClick={handleUnlock}
+                          disabled={isUnlocking || !unlockForm.name || !unlockForm.email}
+                        >
+                          <Mail className="w-4 h-4 mr-2" />
+                          {isUnlocking ? 'Wird gesendet...' : 'Zugang per E-Mail anfordern'}
+                        </Button>
+
+                        <p className="text-xs text-muted-foreground text-center">
+                          Sie erhalten eine E-Mail mit einem Link zur Freischaltung.
+                          Mit der Anforderung akzeptieren Sie unsere Datenschutzbestimmungen.
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )
+              ) : (
+                caseStudy.detailed_description && (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <Lightbulb className="w-5 h-5" />
+                        Projektdetails
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm leading-relaxed">{caseStudy.detailed_description}</p>
+                    </CardContent>
+                  </Card>
+                )
               )}
 
               {/* Technologies Used */}

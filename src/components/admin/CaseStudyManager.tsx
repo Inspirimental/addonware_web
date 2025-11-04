@@ -45,7 +45,12 @@ export const CaseStudyManager = () => {
     tags: [] as string[],
     image_url: "",
     date: new Date().toISOString().split('T')[0],
-    is_active: true
+    is_active: true,
+    teaser_short: "",
+    problem_description: "",
+    solution_description: "",
+    solution_locked: false,
+    pdf_url: ""
   });
 
   useEffect(() => {
@@ -137,7 +142,12 @@ export const CaseStudyManager = () => {
       tags: caseStudy.tags || [],
       image_url: caseStudy.image_url || "",
       date: (caseStudy.date.includes('T') ? caseStudy.date.split('T')[0] : caseStudy.date),
-      is_active: caseStudy.is_active
+      is_active: caseStudy.is_active,
+      teaser_short: caseStudy.teaser_short || "",
+      problem_description: caseStudy.problem_description || "",
+      solution_description: caseStudy.solution_description || "",
+      solution_locked: caseStudy.solution_locked || false,
+      pdf_url: caseStudy.pdf_url || ""
     });
     setIsDialogOpen(true);
   };
@@ -185,7 +195,12 @@ export const CaseStudyManager = () => {
       tags: [],
       image_url: "",
       date: new Date().toISOString().split('T')[0],
-      is_active: true
+      is_active: true,
+      teaser_short: "",
+      problem_description: "",
+      solution_description: "",
+      solution_locked: false,
+      pdf_url: ""
     });
   };
 
@@ -347,13 +362,79 @@ export const CaseStudyManager = () => {
             </div>
 
             <div>
-              <Label htmlFor="detailed_description">Detaillierte Beschreibung</Label>
+              <Label htmlFor="teaser_short">Teaser (Übersicht)</Label>
+              <Textarea
+                id="teaser_short"
+                value={formData.teaser_short}
+                onChange={(e) => setFormData({ ...formData, teaser_short: e.target.value })}
+                placeholder="Kurzer Teaser für die Kachelansicht (250-300 Zeichen)"
+                rows={3}
+                maxLength={300}
+              />
+              <p className="text-xs text-muted-foreground mt-1">
+                {formData.teaser_short.length} / 300 Zeichen
+              </p>
+            </div>
+
+            <div>
+              <Label htmlFor="problem_description">Problemstellung (detailliert)</Label>
+              <Textarea
+                id="problem_description"
+                value={formData.problem_description}
+                onChange={(e) => setFormData({ ...formData, problem_description: e.target.value })}
+                placeholder="Ausführliche Problemstellung (10-12 Sätze, immer sichtbar)"
+                rows={6}
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="solution_description">Lösungsbeschreibung (vollständig)</Label>
+              <Textarea
+                id="solution_description"
+                value={formData.solution_description}
+                onChange={(e) => setFormData({ ...formData, solution_description: e.target.value })}
+                placeholder="Vollständiger Lösungsansatz (30-50 Sätze, nur nach Freischaltung sichtbar)"
+                rows={8}
+              />
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <Switch
+                id="solution_locked"
+                checked={formData.solution_locked}
+                onCheckedChange={(checked) => setFormData({ ...formData, solution_locked: checked })}
+              />
+              <Label htmlFor="solution_locked" className="cursor-pointer">
+                Lösung per E-Mail freischalten (Lead-Generierung)
+              </Label>
+            </div>
+
+            {formData.solution_locked && (
+              <div>
+                <Label htmlFor="pdf_url">PDF Download URL (optional)</Label>
+                <Input
+                  id="pdf_url"
+                  value={formData.pdf_url}
+                  onChange={(e) => setFormData({ ...formData, pdf_url: e.target.value })}
+                  placeholder="https://..."
+                />
+                <p className="text-xs text-muted-foreground mt-1">
+                  Wird nach Freischaltung angezeigt
+                </p>
+              </div>
+            )}
+
+            <div>
+              <Label htmlFor="detailed_description">Detaillierte Beschreibung (alt)</Label>
               <Textarea
                 id="detailed_description"
                 value={formData.detailed_description}
                 onChange={(e) => setFormData({ ...formData, detailed_description: e.target.value })}
                 rows={4}
               />
+              <p className="text-xs text-muted-foreground mt-1">
+                Wird nur verwendet, wenn die neuen Felder leer sind
+              </p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
