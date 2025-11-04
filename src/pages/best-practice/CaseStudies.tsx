@@ -90,8 +90,8 @@ const CaseStudies = () => {
                           <p className="text-sm text-muted-foreground">{study.industry}</p>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <Badge variant="outline" className="mb-1">{study.duration}</Badge>
+                      <div className="text-right shrink-0">
+                        <Badge variant="outline" className="mb-1 whitespace-nowrap min-w-[90px] justify-center">{study.duration}</Badge>
                         <div className="text-xs text-muted-foreground">
                           {new Date(study.date).toLocaleDateString('de-DE', { month: 'long', year: 'numeric' })}
                         </div>
