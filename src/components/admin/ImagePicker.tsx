@@ -59,7 +59,7 @@ export const ImagePicker = ({
       console.log("ImagePicker: Current user:", user?.id);
 
       const { data, error } = await supabase
-        .from("media_files")
+        .from("files")
         .select("*")
         .order("created_at", { ascending: false });
 
@@ -96,15 +96,22 @@ export const ImagePicker = ({
       const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
       const filePath = `${fileName}`;
 
+      console.log("Uploading file to storage bucket 'images':", filePath);
+
       const { error: uploadError } = await supabase.storage
-        .from("media_files")
+        .from("images")
         .upload(filePath, file);
 
-      if (uploadError) throw uploadError;
+      if (uploadError) {
+        console.error("Upload error:", uploadError);
+        throw uploadError;
+      }
 
       const {
         data: { publicUrl },
       } = supabase.storage.from("images").getPublicUrl(filePath);
+
+      console.log("File uploaded, inserting into files table:", { publicUrl, filePath });
 
       const { error: dbError } = await supabase.from("files").insert({
         filename: file.name,
@@ -115,7 +122,10 @@ export const ImagePicker = ({
         uploaded_by: user.id,
       });
 
-      if (dbError) throw dbError;
+      if (dbError) {
+        console.error("Database error:", dbError);
+        throw dbError;
+      }
 
       toast({
         title: "Erfolg",
