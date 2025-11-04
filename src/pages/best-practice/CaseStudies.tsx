@@ -86,7 +86,7 @@ const CaseStudies = () => {
                         alt={study.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent dark:from-black/80 dark:via-black/40 dark:to-transparent"></div>
+                      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/50 to-transparent dark:from-black/70 dark:to-transparent"></div>
                       {study.solution_locked && (
                         <div className="absolute top-3 right-3 z-10">
                           <Badge variant="secondary" className="bg-background/90 backdrop-blur-sm">
