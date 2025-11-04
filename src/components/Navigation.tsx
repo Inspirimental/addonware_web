@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, ChevronRight, User, LogOut, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight, User, LogOut, ArrowRight, Compass, Shield, Lightbulb, Network, Package, Trophy, Users, ClipboardCheck } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -76,21 +76,35 @@ export const Navigation = ({ onConfiguratorOpen }: NavigationProps) => {
                       {item.label}
                       <ChevronDown className="ml-1 h-3 w-3" />
                     </Link>
-                    <div className="absolute top-full left-0 z-50 mt-1 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 bg-popover border rounded-md shadow-lg">
+                    <div className="absolute top-full left-0 z-50 mt-1 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 bg-popover border rounded-md shadow-lg">
                       <div className="p-2">
-                        {item.submenu.map((subItem) => (
-                          subItem.divider ? (
-                            <div key={subItem.href} className="my-2 border-t border-border" />
-                          ) : (
+                        {item.submenu.map((subItem) => {
+                          if (subItem.divider) {
+                            return <div key={subItem.href} className="my-2 border-t border-border" />;
+                          }
+
+                          const IconComponent = subItem.icon ? {
+                            Compass,
+                            Shield,
+                            Lightbulb,
+                            Network,
+                            Package,
+                            Trophy,
+                            Users,
+                            ClipboardCheck
+                          }[subItem.icon] : null;
+
+                          return (
                             <Link
                               key={subItem.href}
                               to={subItem.href}
-                              className="block px-3 py-2 text-sm rounded-md hover:bg-accent hover:text-accent-foreground transition-colors text-popover-foreground"
+                              className="flex items-center gap-3 px-3 py-2 text-sm rounded-md hover:bg-accent hover:text-accent-foreground transition-colors text-popover-foreground"
                             >
-                              {subItem.label}
+                              {IconComponent && <IconComponent className="w-4 h-4 flex-shrink-0" />}
+                              <span>{subItem.label}</span>
                             </Link>
-                          )
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
                   </>
@@ -180,10 +194,23 @@ export const Navigation = ({ onConfiguratorOpen }: NavigationProps) => {
                       </button>
                       {expandedMobileItem === item.label && (
                         <div className="ml-4 space-y-2 bg-muted/30 rounded-md p-3">
-                          {item.submenu.map((subItem) => (
-                            subItem.divider ? (
-                              <div key={subItem.href} className="my-2 border-t border-border" />
-                            ) : (
+                          {item.submenu.map((subItem) => {
+                            if (subItem.divider) {
+                              return <div key={subItem.href} className="my-2 border-t border-border" />;
+                            }
+
+                            const IconComponent = subItem.icon ? {
+                              Compass,
+                              Shield,
+                              Lightbulb,
+                              Network,
+                              Package,
+                              Trophy,
+                              Users,
+                              ClipboardCheck
+                            }[subItem.icon] : null;
+
+                            return (
                               <Link
                                 key={subItem.href}
                                 to={subItem.href}
@@ -191,12 +218,13 @@ export const Navigation = ({ onConfiguratorOpen }: NavigationProps) => {
                                   setIsMobileMenuOpen(false);
                                   setExpandedMobileItem(null);
                                 }}
-                                className="block px-2 py-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                                className="flex items-center gap-3 px-2 py-2 text-sm text-muted-foreground hover:text-primary transition-colors"
                               >
-                                {subItem.label}
+                                {IconComponent && <IconComponent className="w-4 h-4 flex-shrink-0" />}
+                                <span>{subItem.label}</span>
                               </Link>
-                            )
-                          ))}
+                            );
+                          })}
                         </div>
                       )}
                     </>

@@ -2,6 +2,7 @@ export interface SubMenuItem {
   label: string;
   href: string;
   divider?: boolean;
+  icon?: string;
 }
 
 export interface NavItem {
@@ -15,20 +16,20 @@ export const navItems: NavItem[] = [
     label: "Leistungen",
     href: "/services",
     submenu: [
-      { label: "Führungskultur & Strategie", href: "/leistungen/fuehrungskultur-strategie" },
-      { label: "Digitale Souveränität & Compliance", href: "/leistungen/digitale-souveraenitaet-compliance" },
-      { label: "Fachbereiche & Smarte Projekte", href: "/leistungen/fachbereiche-smarte-projekte" },
-      { label: "Komplexität meistern", href: "/leistungen/komplexitaet-meistern" }
+      { label: "Führungskultur & Strategie", href: "/leistungen/fuehrungskultur-strategie", icon: "Compass" },
+      { label: "Digitale Souveränität & Compliance", href: "/leistungen/digitale-souveraenitaet-compliance", icon: "Shield" },
+      { label: "Fachbereiche & Smarte Projekte", href: "/leistungen/fachbereiche-smarte-projekte", icon: "Lightbulb" },
+      { label: "Komplexität meistern", href: "/leistungen/komplexitaet-meistern", icon: "Network" }
     ]
   },
   {
     label: "Best Practice",
     href: "/case-studies",
     submenu: [
-      { label: "Beratungspakete", href: "/pricing" },
-      { label: "Erfolgsgeschichten", href: "/case-studies" },
-      { label: "Netzwerkpartner", href: "/partners" },
-      { label: "Wo stehen Sie", href: "/questionnaire" }
+      { label: "Beratungspakete", href: "/pricing", icon: "Package" },
+      { label: "Erfolgsgeschichten", href: "/case-studies", icon: "Trophy" },
+      { label: "Netzwerkpartner", href: "/partners", icon: "Users" },
+      { label: "Wo stehen Sie", href: "/questionnaire", icon: "ClipboardCheck" }
     ]
   },
   {
