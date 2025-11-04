@@ -382,8 +382,8 @@ const CaseStudyDetail = () => {
                 )
               )}
 
-              {/* Technologies Used */}
-              {caseStudy.technologies && (caseStudy.technologies as string[]).length > 0 && (
+              {/* Technologies Used - Only show if unlocked or not locked */}
+              {(!caseStudy.solution_locked || isUnlocked) && caseStudy.technologies && (caseStudy.technologies as string[]).length > 0 && (
                 <Card>
                   <CardHeader>
                     <CardTitle>Eingesetzte Technologien</CardTitle>
@@ -404,8 +404,8 @@ const CaseStudyDetail = () => {
 
             {/* Sidebar */}
             <div className="space-y-6">
-              {/* Key Results */}
-              {caseStudy.outcomes && (caseStudy.outcomes as string[]).length > 0 && (
+              {/* Key Results - Only show if unlocked or not locked */}
+              {(!caseStudy.solution_locked || isUnlocked) && caseStudy.outcomes && (caseStudy.outcomes as string[]).length > 0 && (
                 <Card>
                   <CardHeader>
                     <CardTitle>Zentrale Ergebnisse</CardTitle>
