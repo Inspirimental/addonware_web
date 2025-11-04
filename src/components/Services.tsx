@@ -26,8 +26,18 @@ export const Services = () => {
   const [showRightArrow, setShowRightArrow] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isDraggingSlider, setIsDraggingSlider] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const touchStartXRef = useRef<number>(0);
+  const touchMoveDistanceRef = useRef<number>(0);
+
+  useEffect(() => {
+    const checkTouchDevice = () => {
+      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    };
+    checkTouchDevice();
+  }, []);
 
   useEffect(() => {
     const fetchHomepageCards = async () => {
@@ -223,22 +233,44 @@ export const Services = () => {
                 to={getLinkPath(card)}
                 className="group relative flex-shrink-0 overflow-hidden rounded-lg cursor-pointer snap-start
                   w-[325px] aspect-[3/4]"
-                onMouseEnter={() => setActiveCard(index)}
-                onMouseLeave={() => setActiveCard(null)}
-                onClick={() => setActiveCard(activeCard === index ? null : index)}
+                onMouseEnter={() => !isTouchDevice && setActiveCard(index)}
+                onMouseLeave={() => !isTouchDevice && setActiveCard(null)}
+                onTouchStart={(e) => {
+                  touchStartXRef.current = e.touches[0].clientX;
+                  touchMoveDistanceRef.current = 0;
+                }}
+                onTouchMove={(e) => {
+                  const touchX = e.touches[0].clientX;
+                  touchMoveDistanceRef.current = Math.abs(touchX - touchStartXRef.current);
+                }}
+                onClick={(e) => {
+                  if (isTouchDevice) {
+                    if (touchMoveDistanceRef.current > 10) {
+                      e.preventDefault();
+                      return;
+                    }
+                    if (activeCard === index) {
+                      return;
+                    }
+                    e.preventDefault();
+                    setActiveCard(index);
+                  }
+                }}
               >
                 {/* Background Image */}
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                  className={`absolute inset-0 bg-cover bg-center transition-transform duration-700 ${
+                    !isTouchDevice ? 'group-hover:scale-110' : ''
+                  }`}
                   style={{
                     backgroundImage: `url(${card.background_image})`
                   }}
                 />
 
                 {/* Overlay - switches between dark and light based on theme */}
-                <div className="absolute inset-0 bg-gradient-to-t transition-all duration-500
-                  from-white/90 via-white/50 to-white/30 group-hover:from-white/95 group-hover:via-white/80 group-hover:to-white/60
-                  dark:from-black/90 dark:via-black/50 dark:to-black/30 dark:group-hover:from-black/95 dark:group-hover:via-black/80 dark:group-hover:to-black/60" />
+                <div className={`absolute inset-0 bg-gradient-to-t transition-all duration-500
+                  from-white/90 via-white/50 to-white/30 ${!isTouchDevice ? 'group-hover:from-white/95 group-hover:via-white/80 group-hover:to-white/60' : ''}
+                  dark:from-black/90 dark:via-black/50 dark:to-black/30 ${!isTouchDevice ? 'dark:group-hover:from-black/95 dark:group-hover:via-black/80 dark:group-hover:to-black/60' : ''}`} />
 
                 {/* Category Badge - Top Right */}
                 <div className="absolute top-6 right-6 z-10">
@@ -249,16 +281,16 @@ export const Services = () => {
 
                 {/* Icon - Top Left */}
                 {card.icon && (
-                  <div className="absolute top-6 left-6 p-3 rounded-lg backdrop-blur-sm border transition-all duration-500
-                    bg-[rgb(34,38,42)]/10 border-[rgb(34,38,42)]/20 group-hover:bg-[rgb(34,38,42)]/20
-                    dark:bg-white/10 dark:border-white/20 dark:group-hover:bg-white/20">
+                  <div className={`absolute top-6 left-6 p-3 rounded-lg backdrop-blur-sm border transition-all duration-500
+                    bg-[rgb(34,38,42)]/10 border-[rgb(34,38,42)]/20 ${!isTouchDevice ? 'group-hover:bg-[rgb(34,38,42)]/20' : ''}
+                    dark:bg-white/10 dark:border-white/20 ${!isTouchDevice ? 'dark:group-hover:bg-white/20' : ''}`}>
                     <card.icon className="w-6 h-6 text-[rgb(34,38,42)] dark:text-white" />
                   </div>
                 )}
 
                 {/* Title - Always visible at bottom */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 transition-all duration-500 group-hover:pb-8">
-                  <h3 className="text-[rgb(34,38,42)] dark:text-white text-xl font-bold mb-2 tracking-tight transition-all duration-500 group-hover:text-2xl">
+                <div className={`absolute bottom-0 left-0 right-0 p-6 transition-all duration-500 ${!isTouchDevice ? 'group-hover:pb-8' : ''}`}>
+                  <h3 className={`text-[rgb(34,38,42)] dark:text-white text-xl font-bold mb-2 tracking-tight transition-all duration-500 ${!isTouchDevice ? 'group-hover:text-2xl' : ''}`}>
                     {card.title}
                   </h3>
                   <p className="text-[rgb(34,38,42)]/80 dark:text-white/80 text-sm font-light transition-opacity duration-300">
