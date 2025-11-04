@@ -251,10 +251,6 @@ const CaseStudyDetail = () => {
                     <p className="text-sm">{caseStudy.challenge}</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-sm text-muted-foreground mb-2">Lösungsansatz</h4>
-                    <p className="text-sm">{caseStudy.solution}</p>
-                  </div>
-                  <div>
                     <h4 className="font-semibold text-sm text-muted-foreground mb-2">Ergebnis</h4>
                     <p className="text-sm font-medium text-primary">{caseStudy.result}</p>
                   </div>
@@ -287,7 +283,7 @@ const CaseStudyDetail = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="text-sm leading-relaxed whitespace-pre-line">{caseStudy.solution_description}</p>
+                      <p className="text-sm leading-relaxed whitespace-pre-line">{caseStudy.detailed_description}</p>
 
                       {caseStudy.pdf_url && (
                         <div className="pt-4 border-t">
