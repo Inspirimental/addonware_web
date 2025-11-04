@@ -66,7 +66,7 @@ const CaseStudies = () => {
         </div>
 
         {isLoading ? (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
             {Array.from({ length: 4 }).map((_, i) => (
               <CaseStudySkeleton key={i} />
             ))}
@@ -74,7 +74,7 @@ const CaseStudies = () => {
         ) : error ? (
           <div className="text-center text-red-500">{error}</div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
             {filteredCaseStudies.map((study) => {
               const IconComponent = getIconForCategory(study.category);
               return (
