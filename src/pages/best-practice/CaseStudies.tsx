@@ -44,7 +44,7 @@ const CaseStudies = () => {
       <div className="container mx-auto px-4 py-24">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Erfolgsgeschichten für die Zukunft
+            Erfolgsgeschichten aus der Wirklichkeit
           </h1>
           <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
             Unsere Projekte sprechen für sich – und für unsere Haltung. Hier finden Sie ausgewählte Beispiele aus verschiedenen Organisationstypen.
