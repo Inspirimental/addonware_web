@@ -72,6 +72,7 @@ const App = () => (
           <Route path="/questionnaire" element={<QuestionnaireTransformation />} />
           <Route path="/umfrage/fuehrung" element={<QuestionnaireFuehrung />} />
           <Route path="/umfrage/digitale-souveraenitaet" element={<QuestionnaireDigitaleSouveraenitaet />} />
+          <Route path="/umfrage/digitalisierung" element={<QuestionnaireDigitaleSouveraenitaet />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="/agb" element={<AGB />} />
